@@ -15,9 +15,13 @@ int 		main()
     while ((de = readdir(dr)) != NULL)
 	{
 		lstat(de->d_name, &file_info);
-		if (de->d_name[1] != '.')
+		if (de->d_name[0] != '.')
 			if ((file_info.st_mode & S_IFMT)==S_IFDIR)
-				ft_putstr("|| directory");
+			{
+				ft_putstr("directory: ");
+				ft_putstr(de->d_name);
+				ft_putchar('\n');
+			}
 		/*if (ac == 1)
 		{
 			if (de->d_name[0] != '.')

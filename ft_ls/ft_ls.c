@@ -1,31 +1,37 @@
 #include	"./includes/ft_ls.h"
 
-void		call_print(char *str, char *de_name)
+void		call_print(char *str, t_format *tf)
 {
-	if (ft_strcmp(str, "-a") == 0)
-		ft_putstr(de_name);
-	ft_putstr("\t\t");
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == 'a')
+			tf->a_form = 1;
+		i++;
+	}
 }
 
 int 		main(int ac, char **av)
 {
+	(void)ac;
+	t_format *tf = NULL;
     struct dirent *de;
 	//struct stat file_info;
-    DIR *dr = opendir("/goinfre/fremoor/");
+    DIR *dr = opendir("./");
+	tf = reset_tf(tf);
+	call_print(av[1], tf);
     while ((de = readdir(dr)) != NULL)
 	{
-		if (ac == 1)
+		if (de->d_name[0] == '.')
 		{
-			if (de->d_name[0] != '.')
-			{
+			if (tf->a_form == 1)
 				ft_putstr(de->d_name);
-				ft_putstr("\t\t");
-			}
 		}
 		else
-			call_print(av[1], de->d_name);
+			ft_putstr(de->d_name);
 	}
-    ft_putchar('\n');
     closedir(dr);
     return 0;
 }
