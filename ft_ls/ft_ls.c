@@ -34,14 +34,18 @@ unsigned char		ft_flags(char **av, int ac)
 
 int 				main(int ac, char **av)
 {
-	//t_format tf;
-	//tf.flags = ft_flags(av, ac);
-	int i = 0;
+	t_format tf;
+	tf.flags = ft_flags(av, ac);
+	/*int i = 0;
 	struct dirent *de;
 	DIR *dr = opendir("./");
     while ((de = readdir(dr)) != NULL)
 	{
 		printf("%s\n", de->d_name);
-	}
+	}*/
+	if (tf.flags & 1)
+		printf("krunk");
+	if (tf.flags & 16)
+		printf("biaaaatch");
 	return 0;
 }
