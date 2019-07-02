@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 07:43:25 by fremoor           #+#    #+#             */
-/*   Updated: 2019/06/28 14:51:20 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/01 15:04:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/dir.h>
 # include "../libft/includes/libft.h"
 
 typedef struct		s_format 
 {
-	int				l_form;
-	int				R_form;
-	int				a_form;
-	int				r_form;
-	int				t_form;
-	char			*str_dir;
+	unsigned char	flags;
 }					t_format;
 
 t_format	*reset_tf(t_format *);

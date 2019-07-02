@@ -9,10 +9,10 @@ all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
-	@gcc $(FLAGS) -o $(NAME) $(SRC_PATH)*.c ft_ls_test.c $(LIBFT_PATH)libft.a
+	@gcc -o $(NAME) ft_ls.c $(LIBFT_PATH)libft.a
 
 %.o: %.c
-	@gcc $(FLAGS) -c $< -o $@
+	@gcc -c $< -o $@
 
 clean:
 	@make -C $(LIBFT_PATH) clean
