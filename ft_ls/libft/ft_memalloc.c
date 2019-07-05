@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 08:31:10 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
+/*   Created: 2019/05/19 16:19:29 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/28 11:05:20 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "libft.h"
 
 void	*ft_memalloc(size_t size)
 {
 	void *mem;
 
-	mem = malloc(size);
-	if (mem == NULL)
+	if (!(mem = malloc(size)))
 		return (NULL);
 	ft_memset(mem, 0, size);
 	return (mem);

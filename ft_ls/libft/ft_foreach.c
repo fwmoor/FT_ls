@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_foreach.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 14:52:38 by fremoor           #+#    #+#             */
-/*   Updated: 2019/05/22 14:55:24 by fremoor          ###   ########.fr       */
+/*   Created: 2019/06/11 14:16:22 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/06/19 09:24:01 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_foreach(int *tab, int len, void (*f)(int))
+void	ft_foreach(int *tab, int length, void (*f)(int))
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < len)
+	while (i < length)
 	{
 		f(tab[i]);
 		i++;

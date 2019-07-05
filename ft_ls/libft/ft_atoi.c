@@ -3,38 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 08:30:07 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
+/*   Created: 2019/05/19 11:38:54 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/06/11 08:39:06 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "libft.h"
 
 int		ft_atoi(const char *str)
 {
-	int	ret;
-	int	neg;
-	int	i;
+	int neg;
+	int i;
+	int num;
 
-	ret = 0;
-	neg = 1;
 	i = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-			str[i] == '\f' || str[i] == '\v' || str[i] == '\r')
+	neg = 1;
+	num = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			neg = -1;
+			neg *= -1;
 		i++;
 	}
-	while (str[i] && ft_isdigit(str[i]))
+	while (str[i] >= 48 && str[i] <= 57)
 	{
-		ret *= 10;
-		ret += str[i] - 48;
+		num = num * 10 + (str[i] - 48);
 		i++;
 	}
-	return (ret * neg);
+	return (num * neg);
 }

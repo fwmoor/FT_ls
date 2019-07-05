@@ -1,56 +1,53 @@
-#include	"../includes/ft_ls.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
+/*   Updated: 2019/07/05 15:31:01 by fremoor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-unsigned char		ls_flags(char **av, int ac)
+#include "../includes/ft_ls.h"
+
+void ft_ls(char *path, unsigned int flag)
 {
-	int				i;
-	char			*str;
-	unsigned char	flags;
+    DIR * dp = opendir(path);
+    struct dirent * ep;
+	snode *first = NULL;
 
-	flags = 0;
-	i = 1;
-	while (i < ac)
+	if (error_handle(path, dp, errno, flag) == 1)
+		return;
+    while((ep = readdir(dp)))
 	{
-		str = ft_strdup(av[i]);
-		while (*str == 'l' || *str == 'a' || *str == 'R' ||
-			*str == 'r' || *str == 't' || *str == ' ' || *str == '-')
-		{
-			if (*str == 'l')
-				flags |= 1;
-			if (*str == 'a')
-				flags |= 2;
-			if (*str == 'R')
-				flags |= 4;
-			if (*str == 'r')
-				flags |= 8;
-			if (*str == 't')
-				flags |= 16;
-			(str)++;
-		}
-		i++;
+		if (!first)
+			first = insert_node_last(ep, path);
+		else
+			insert_node_last(ep, path);
 	}
-	return (flags);
-}
-
-int 				main(int ac, char **av)
-{
-	t_form			tf;
-	t_nodes			*test = NULL;
-	struct dirent	*de;
-	DIR				*dr = opendir("./");
-
-	tf.flags = ls_flags(av, ac);
-    while ((de = readdir(dr)) != NULL)
+    closedir(dp);
+	mergeSort(&first, flag);
+	display(first, flag);
+    dp = opendir(path);
+    while((ep = readdir(dp))) 
 	{
-		if (de->d_name[0] != '.' || (de->d_name[0] == '.' && tf.flags & 2))
+		if (strncmp(ep->d_name, ".", 1)) 
 		{
-			if (!test)
-				test = insert_node(de);
-			else
-				insert_node(de);
+    	   	if (flag & 2 && ep->d_type == 4) 
+			{
+       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
+       		}
 		}
-	}
-	closedir(dr);
-	display(test, &tf);
-	delete_list(&test);
-	return (0);
+		else
+		{
+    	   	if (flag & 2 && flag & 4 && ep->d_type == 4 && ft_strcmp(ep->d_name, ".") != 0 && ft_strcmp(ep->d_name, "..") != 0) 
+			{
+       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
+			}
+		}
+	}	
+    closedir(dp);
+	deleteList(&first);
 }

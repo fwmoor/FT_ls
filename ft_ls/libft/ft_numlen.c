@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/03 09:23:22 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 08:00:51 by fremoor          ###   ########.fr       */
+/*   Created: 2019/05/22 08:23:26 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/28 11:10:53 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_printf.h"
+#include "libft.h"
 
-int				ft_printf(const char *format, ...)
+int		ft_numlen(long nb)
 {
-	va_list args;
+	int len;
 
-	va_start(args, format);
-	return (ft_format_all(format, args));
+	len = 0;
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		len++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		len++;
+	}
+	return (len);
 }
