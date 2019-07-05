@@ -4,12 +4,11 @@ LIBFT_PATH = ./libft/
 SRC_PATH = ./srcs/
 FLAGS = -Wall -Werror -Wextra
 INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)includes/
-VAR = ft_ls.c
 all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
-	@gcc -o $(NAME) ft_ls.c $(LIBFT_PATH)libft.a
+	@gcc $(FLAGS) -o $(NAME) $(SRC_PATH)*.c $(LIBFT_PATH)libft.a
 
 %.o: %.c
 	@gcc -c $< -o $@

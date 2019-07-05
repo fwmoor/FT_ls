@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 07:43:25 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 11:03:24 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/05 12:32:10 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct			s_nodes
 	struct s_nodes		*next;
 }						t_nodes;
 
-t_format	*reset_tf(t_format *);
+void					display(t_nodes *first, t_form *tf);
+t_nodes					*insert_node(struct dirent *de);
+void					delete_list(t_nodes **head_in);
 
 #endif
