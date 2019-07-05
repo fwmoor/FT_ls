@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 09:24:16 by fremoor           #+#    #+#             */
-/*   Updated: 2019/06/25 08:35:39 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-char	*ft_strnstr(const char *str, const char *to_find, size_t n)
+char	*ft_strnstr(char *str, char *to_find, size_t n)
 {
 	size_t str_len;
 	size_t find_len;

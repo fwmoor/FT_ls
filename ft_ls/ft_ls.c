@@ -1,31 +1,30 @@
 #include	"./includes/ft_ls.h"
-#include <stdio.h>
 
-unsigned char		ft_flags(char **av, int ac)
+unsigned char		ls_flags(char **av, int ac)
 {
 	int				i;
-	char			**str;
+	char			*str;
 	unsigned char	flags;
 
 	flags = 0;
 	i = 1;
 	while (i < ac)
 	{
-		str = &av[i];
-		while (**str == 'l' || **str == 'a' || **str == 'R' ||
-			**str == 'r' || **str == 't' || **str == ' ' || **str == '-')
+		str = ft_strdup(av[i]);
+		while (*str == 'l' || *str == 'a' || *str == 'R' ||
+			*str == 'r' || *str == 't' || *str == ' ' || *str == '-')
 		{
-			if (**str == 'l')
+			if (*str == 'l')
 				flags |= 1;
-			if (**str == 'a')
+			if (*str == 'a')
 				flags |= 2;
-			if (**str == 'R')
+			if (*str == 'R')
 				flags |= 4;
-			if (**str == 'r')
+			if (*str == 'r')
 				flags |= 8;
-			if (**str == 't')
+			if (*str == 't')
 				flags |= 16;
-			(*str)++;
+			(str)++;
 		}
 		i++;
 	}
@@ -35,17 +34,15 @@ unsigned char		ft_flags(char **av, int ac)
 int 				main(int ac, char **av)
 {
 	t_format tf;
-	tf.flags = ft_flags(av, ac);
-	/*int i = 0;
+	tf.flags = ls_flags(av, ac);
 	struct dirent *de;
 	DIR *dr = opendir("./");
+	de = readdir(dr);
+	ft_printf("%s", de->d_name);
     while ((de = readdir(dr)) != NULL)
 	{
-		printf("%s\n", de->d_name);
-	}*/
-	if (tf.flags & 1)
-		printf("krunk");
-	if (tf.flags & 16)
-		printf("biaaaatch");
+		ft_printf("%20s", de->d_name);
+	}
+	ft_putchar('\n');
 	return 0;
 }

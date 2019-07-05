@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_extra.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 10:36:52 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
+/*   Created: 2019/07/02 08:22:59 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/05 08:00:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "./includes/ft_printf.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+int			ft_after(t_format *tf, long len, char *str)
 {
-	char	*str;
-	size_t	i;
+	int		i;
+	long	max;
 
-	if (!s)
-		return (NULL);
-	str = ft_strnew(len);
-	if (str == NULL)
-		return (NULL);
 	i = 0;
-	while (i < len)
+	while ((tf->flags & 1 && tf->len > len) || tf->prec-- > len)
 	{
-		str[i] = s[start + i];
+		ft_putchar('0');
 		i++;
+		tf->len > 0 ? tf->len-- : tf->len;
 	}
-	str[i] = '\0';
-	return (str);
+	max = (tf->prec > len && (tf->prec != 0)) ? tf->prec : len;
+	ft_putstr(str);
+	i += len;
+	if (tf->flags & 8)
+		while (tf->len-- > max)
+		{
+			ft_putchar(' ');
+			i++;
+		}
+	return (i);
 }

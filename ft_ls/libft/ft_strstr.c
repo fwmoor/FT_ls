@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 10:32:51 by fremoor           #+#    #+#             */
-/*   Updated: 2019/06/25 08:36:44 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-char	*ft_strstr(const char *str, const char *to_find)
+char	*ft_strstr(char *str, char *to_find)
 {
 	int i;
 	int j;
@@ -26,7 +26,7 @@ char	*ft_strstr(const char *str, const char *to_find)
 		while (to_find[j] == str[i + j])
 		{
 			if (to_find[j + 1] == '\0')
-				return ((char *)str + i);
+				return (str + i);
 			j++;
 		}
 		i++;

@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/21 10:36:52 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 07:59:24 by fremoor          ###   ########.fr       */
+/*   Created: 2019/07/03 09:23:22 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/05 08:00:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/libft.h"
+#include "./includes/ft_printf.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+int				ft_printf(const char *format, ...)
 {
-	char	*str;
-	size_t	i;
+	va_list args;
 
-	if (!s)
-		return (NULL);
-	str = ft_strnew(len);
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s[start + i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	va_start(args, format);
+	return (ft_format_all(format, args));
 }

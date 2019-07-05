@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/06/25 08:34:57 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/04 17:23:20 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ int					ft_memcmp(const void *str1, const void *str2, size_t n);
 
 char				*ft_itoa(int n);
 char				*ft_strnew(size_t size);
+char				*ft_str_upper(char *str);
 char				*ft_strdup(const char *s);
 char				*ft_strtrim(char const *s);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
-char				*ft_strstr(const char *str, const char *to_find);
+char				*ft_strstr(char *str, char *to_find);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strcpy(char *dest, const char *srcs);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strnstr(const char *str, const char *to_find, size_t n);
+char				*ft_strnstr(char *str, char *to_find, size_t n);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
