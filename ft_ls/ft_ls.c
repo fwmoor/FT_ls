@@ -1,5 +1,108 @@
 #include	"./includes/ft_ls.h"
 
+t_nodes				*sorted_list(t_nodes *a, t_nodes *b)
+{
+	t_nodes			*ret = NULL;
+
+	if (a == NULL)
+		return (b);
+	else if (b == NULL)
+		return (a);
+
+	if (ft_strcmp(a->name, b->name) <= 0)
+	{
+		ret = a;
+		ret->next = sorted_list(a->next, b);
+	}
+	else
+	{
+		ret = b;
+		ret->next = sorted_list(a, b->next);
+	}
+	return (ret);
+}
+
+void				split_half(t_nodes *head, t_nodes **a, t_nodes **b)
+{
+	t_nodes			*first;
+	t_nodes			*last;
+
+	last = head;
+	first = head->next;
+	while (first != NULL)
+	{
+		first = first->next;
+		if(first != NULL)
+		{
+			last = last->next;
+			first = first->next;
+		}
+	}
+	*a = head;
+	*b = last->next;
+	last->next = NULL;
+}
+
+void				sort_list(t_nodes **first)
+{
+	t_nodes			*head;
+	t_nodes			*a;
+	t_nodes			*b;
+
+	head = *first;
+	if (head == NULL || head->next == NULL)
+		return ;
+	split_half(head, &a, &b);
+	sort_list(&a);
+	sort_list(&b);
+	*first = sorted_list(a, b);
+}
+
+void				display(t_nodes *first)
+{
+	t_nodes			*start;
+
+	sort_list(&first);
+	start = first;
+	while (start != NULL)
+	{
+		ft_printf("%s\n", start->name);
+		start = start->next;
+	}
+}
+
+t_nodes				*create_node(struct dirent *de)
+{
+	t_nodes			*new;
+
+	new = (t_nodes *)malloc(sizeof(t_nodes));
+	new->name = de->d_name;
+	new->next = NULL;
+	return (new);
+}
+
+t_nodes				*insert_node(struct dirent *de)
+{
+	static t_nodes	*first;
+	static t_nodes	*last;
+	t_nodes			*new;
+
+	new = create_node(de);
+	if (first == last && last == NULL)
+	{
+		first = last = new;
+		first->next = NULL;
+		last->next = NULL;
+	}
+	else
+	{
+		last->next = new;
+		last = new;
+		last->next = NULL;
+	}
+	return (new);
+}
+
 unsigned char		ls_flags(char **av, int ac)
 {
 	int				i;
@@ -33,16 +136,20 @@ unsigned char		ls_flags(char **av, int ac)
 
 int 				main(int ac, char **av)
 {
-	t_format tf;
+	t_form			tf;
+	t_nodes			*test = NULL;
+	struct dirent	*de;
+	DIR				*dr = opendir("./");
+
 	tf.flags = ls_flags(av, ac);
-	struct dirent *de;
-	DIR *dr = opendir("./");
-	de = readdir(dr);
-	ft_printf("%s", de->d_name);
     while ((de = readdir(dr)) != NULL)
 	{
-		ft_printf("%20s", de->d_name);
+		if (!test)
+			test = insert_node(de);
+		else
+			insert_node(de);
 	}
-	ft_putchar('\n');
+	closedir(dr);
+	display(test);
 	return 0;
 }

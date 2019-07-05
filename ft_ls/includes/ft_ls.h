@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 07:43:25 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/05 08:04:13 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/05 11:03:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@
 # include "../libft/includes/libft.h"
 # include "../libft/includes/ft_printf.h"
 
-typedef struct		s_form 
+typedef struct			s_form 
 {
-	unsigned char	flags;
-}					t_form;
+	unsigned char		flags;
+}						t_form;
+
+typedef struct			s_nodes
+{
+	char				*name;
+	struct s_nodes		*next;
+}						t_nodes;
 
 t_format	*reset_tf(t_format *);
 
