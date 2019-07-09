@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mimeyer <mimeyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 16:50:03 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/28 11:03:57 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/07/03 13:57:58 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/07/05 13:41:09 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_ls.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+int	check_errors(char *path)
 {
-	del((*alst)->content, (*alst)->content_size);
-	free(*alst);
-	*alst = NULL;
+	if (errno == 20)
+	{
+		ft_putstr(path);
+		return (1);
+	}
+	return (0);
 }
