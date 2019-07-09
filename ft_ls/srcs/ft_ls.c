@@ -6,11 +6,28 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:51:23 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/05 15:31:01 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 10:08:08 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void	recursion(snode *list, unsigned char flag, char *path)
+{
+	snode *ptr;
+
+	ptr = list;
+	if (flag & 2)
+	{
+		while (ptr != NULL)
+		{
+			if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
+			&& (ft_strcmp(ptr->name, "..") != 0))
+				ft_ls(ft_strjoin(path, ft_strjoin("/", ptr->name)), flag);
+			ptr = ptr->next;
+		}
+	}
+}
 
 void ft_ls(char *path, unsigned int flag)
 {
@@ -30,24 +47,6 @@ void ft_ls(char *path, unsigned int flag)
     closedir(dp);
 	mergeSort(&first, flag);
 	display(first, flag);
-    dp = opendir(path);
-    while((ep = readdir(dp))) 
-	{
-		if (strncmp(ep->d_name, ".", 1)) 
-		{
-    	   	if (flag & 2 && ep->d_type == 4) 
-			{
-       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
-       		}
-		}
-		else
-		{
-    	   	if (flag & 2 && flag & 4 && ep->d_type == 4 && ft_strcmp(ep->d_name, ".") != 0 && ft_strcmp(ep->d_name, "..") != 0) 
-			{
-       	    	ft_ls(ft_strjoin(path, ft_strjoin("/",ep->d_name)), flag);
-			}
-		}
-	}	
-    closedir(dp);
+	recursion(first, flag, path);
 	deleteList(&first);
 }
