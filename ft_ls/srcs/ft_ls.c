@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 12:06:59 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 14:15:18 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 void	recursion(t_dir *list, unsigned char flags, char *path)
 {
 	t_dir *ptr;
+	char *s1;
+	char *s2;
 
 	ptr = list;
 	if (flags & 4)
@@ -30,7 +32,11 @@ void	recursion(t_dir *list, unsigned char flags, char *path)
 					ptr = ptr->next;
 					continue ;
 				}
-				ft_ls(ft_strjoin(path, ft_strjoin("/", ptr->name)), flags);
+				s1 = ft_strjoin("/", ptr->name);
+				s2 = ft_strjoin(path, s1);
+				free(s1);
+				ft_ls(s2, flags);
+				free(s2);
 			}
 			ptr = ptr->next;
 		}
@@ -97,6 +103,5 @@ int		main(int ac, char **av)
 			ft_ls(".", flags);
 	}
 	ft_putchar('\n');
-	while (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 12:02:36 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 14:12:27 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_dir	*set_list(struct dirent *de)
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
 	stat(de->d_name, &sb);
-	new->name = de->d_name;
+	new->name = ft_strdup(de->d_name);
 	new->nlink = sb.st_nlink;
 	new->uid = convert_un(sb.st_uid);
 	new->gid = convert_gn(sb.st_gid);
@@ -42,6 +42,7 @@ void	delete_list(t_dir **list)
 	while (current)
 	{
 		next = current->next;
+		free(current->name);
 		free(current);
 		current = next;
 	}

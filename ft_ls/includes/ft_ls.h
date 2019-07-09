@@ -6,13 +6,13 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 12:18:05 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 14:38:36 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
-
+ 
 # include "../libft/libft.h"
 # include <dirent.h>
 # include <sys/stat.h>
@@ -21,6 +21,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <uuid/uuid.h>
+# include <time.h>
 
 typedef struct		s_dir
 {
@@ -37,6 +38,7 @@ typedef struct		s_dir
 }					t_dir;
 
 int					check_errors(char *path);
+void				convertDate(char *str);
 t_dir				*set_list(struct dirent *de);
 void				delete_list(t_dir **list);
 void				list_add(t_dir **alst, struct dirent *de);

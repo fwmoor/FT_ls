@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 12:25:16 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 14:47:08 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,59 @@
 void display_blocks(t_dir *ptr)
 {
 	int i = 0;
+	ft_putstr("total ");
 	while (ptr)
 	{
-		i += ptr->block;
+		i+=ptr->block;
 		ptr = ptr->next;
 	}
-	printf("total %d\n",i);
+	ft_putnbr(i);
+	ft_putstr("\n");
+}
+
+void	display_l(t_dir *lst)
+{
+	ft_putstr((S_ISDIR(lst->mode)) ? "d" : "-");
+	ft_putstr((lst->mode & S_IRUSR) ? "r" : "-");
+	ft_putstr((lst->mode & S_IWUSR) ? "w" : "-");
+	ft_putstr((lst->mode & S_IXUSR) ? "x" : "-");
+	ft_putstr((lst->mode & S_IRGRP) ? "r" : "-");
+	ft_putstr((lst->mode & S_IWGRP) ? "w" : "-");
+	ft_putstr((lst->mode & S_IXGRP) ? "x" : "-");
+	ft_putstr((lst->mode & S_IROTH) ? "r" : "-");
+	ft_putstr((lst->mode & S_IWOTH) ? "w" : "-");
+	ft_putstr((lst->mode & S_IXOTH) ? "x " : "- ");
+	ft_putnbr(lst->nlink);
+	ft_putstr("\t");
+	ft_putstr(lst->uid);
+	ft_putstr("\t");
+	ft_putstr(lst->gid);
+	ft_putstr("\t");
+	ft_putnbr(lst->size);
+	ft_putstr("\t");
+	convertDate(ctime(&lst->mtime));
+	ft_putstr(" ");
+	ft_putstr(lst->name);
+	ft_putchar('\n');
 }
 
 void	print_list(t_dir *list, unsigned char flags)
 {
-	t_dir *ptr = list;
-	t_dir *ptr2 = ptr;
+	t_dir *ptr;
+	t_dir *ptr2;
 
-	display_blocks(ptr2);
+	ptr = list;
+	ptr2 = list;
+	if (flags & 1)
+		display_blocks(ptr2);
 	while (ptr != NULL)
 	{
 		if (flags & 2)
-		{
-			printf("%hu\t%s\t%s\t%lld\t%s\n", ptr->nlink, ptr->uid, ptr->gid,
-					ptr->size, ptr->name);
-			ptr = ptr->next;
-		}
+			display_l(ptr);
 		else
-		{
-			if (ptr->name[0] != '.')
-			{
-				printf("%hu\t%s\t%s\t%lld\t%s\n", ptr->nlink, ptr->uid,
-						ptr->gid, ptr->size, ptr->name);
-			}
-			ptr = ptr->next;
-		}
+			if (ft_strncmp(ptr->name, ".", 1) != 0)
+				display_l(ptr);
+		ptr = ptr->next;
 	}
 }
 

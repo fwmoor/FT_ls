@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 11:52:34 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/09 14:46:30 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ void convertDate(char *str)
 		i++;
 	}
 	ft_putstr(ret);
-	ft_putstr("\t");
 }
