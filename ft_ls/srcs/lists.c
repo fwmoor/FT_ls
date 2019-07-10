@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/05 12:09:38 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:22:27 by zmahomed         ###   ########.fr       */
+/*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/10 11:42:14 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/ft_ls.h"
 

@@ -3,27 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/19 11:57:01 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/28 11:24:21 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/21 09:24:16 by fremoor           #+#    #+#             */
+/*   Updated: 2019/05/21 12:56:36 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t len)
+char	*ft_strnstr(char *str, char *to_find, size_t n)
 {
-	size_t len2;
+	size_t str_len;
+	size_t find_len;
 
-	if (*s2 == '\0')
-		return ((char *)s1);
-	len2 = ft_strlen(s2);
-	while (*s1 != '\0' && len-- >= len2)
+	if (!*to_find)
+		return ((char *)str);
+	find_len = ft_strlen(to_find);
+	str_len = ft_strlen(str);
+	while (*str && n >= find_len && find_len <= str_len)
 	{
-		if (*s1 == *s2 && ft_strncmp(s1, s2, len2) == 0)
-			return ((char *)s1);
-		s1++;
+		if (!ft_strncmp(str, to_find, find_len))
+			return ((char *)str);
+		n--;
+		str_len--;
+		str++;
 	}
 	return (NULL);
 }

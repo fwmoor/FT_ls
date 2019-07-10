@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_wordcount.c                                     :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 08:19:34 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/28 11:27:16 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/21 08:27:28 by fremoor           #+#    #+#             */
+/*   Updated: 2019/05/21 08:27:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_wordcount(const char *s, char c)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	size_t	i;
-	size_t	w;
+	t_list *list;
+	t_list *head;
 
-	i = 0;
-	w = 0;
-	while (s[i])
+	list = NULL;
+	if (lst && f)
 	{
-		if (s[i] != c)
-			w++;
-		while (s[i] != c && s[i + 1])
-			i++;
-		i++;
+		head = f(lst);
+		list = head;
+		lst = lst->next;
+		while (lst)
+		{
+			head->next = f(lst);
+			head = head->next;
+			lst = lst->next;
+		}
 	}
-	return (w);
+	return (list);
 }

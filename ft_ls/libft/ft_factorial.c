@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwr.c                                           :+:      :+:    :+:   */
+/*   ft_factorial.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/11 14:28:56 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/11 15:30:19 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/22 15:03:46 by fremoor           #+#    #+#             */
+/*   Updated: 2019/05/22 15:07:47 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_pwr(int base, int exponent)
+int		ft_factorial(int nb)
 {
-	int i;
-	int result;
-
-	i = 1;
-	result = base;
-	if (exponent == 0)
+	if (nb == 0)
 		return (1);
-	if (exponent == 1)
-		return (result);
-	if (exponent < 0)
+	if (nb < 0)
 		return (0);
-	while (i < exponent)
-	{
-		result *= base;
-		i++;
-	}
-	return (result);
+	if (nb > 1)
+		return (nb * (ft_factorial(nb - 1)));
+	else
+		return (nb);
 }

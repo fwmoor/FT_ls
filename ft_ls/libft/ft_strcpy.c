@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/19 11:54:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/11 12:46:05 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/21 08:48:44 by fremoor           #+#    #+#             */
+/*   Updated: 2019/05/21 08:48:52 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	int len;
 	int i;
 
 	i = 0;
-	len = ft_strlen(src);
-	len++;
-	while (i < len)
+	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }

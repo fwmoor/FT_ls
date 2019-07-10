@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/19 11:50:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/20 15:56:41 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/21 08:28:42 by fremoor           #+#    #+#             */
+/*   Updated: 2019/05/21 08:28:44 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isalpha(int ch)
+#include "libft.h"
+
+int		ft_isalpha(int c)
 {
-	if (((ch > 64) && (ch < 91)) || ((ch > 96) && (ch < 123)))
-		return (1);
-	else
+	if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))
 		return (0);
+	return (1);
 }

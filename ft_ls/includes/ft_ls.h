@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zmahomed <zmahomed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:20:27 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 11:36:21 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 
 # define FT_LS_H
-# include "../libft/libft.h"
+# include "./ft_printf.h"
 # include <dirent.h>
 # include <sys/stat.h>
 # include <stdio.h>
