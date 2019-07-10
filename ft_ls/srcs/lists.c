@@ -6,20 +6,24 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 14:12:27 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 10:13:12 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_dir	*set_list(struct dirent *de)
+t_dir	*set_list(struct dirent *de, char *path)
 {
 	t_dir		*new;
 	struct stat	sb;
+	char *path2;
+	char *tmp;
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
-	stat(de->d_name, &sb);
+	tmp = ft_strjoin(path, "/");
+	path2 = ft_strjoin(tmp, de->d_name);
+	lstat(path2, &sb);
 	new->name = ft_strdup(de->d_name);
 	new->nlink = sb.st_nlink;
 	new->uid = convert_un(sb.st_uid);
@@ -30,6 +34,8 @@ t_dir	*set_list(struct dirent *de)
 	new->mtime = sb.st_mtime;
 	new->block = sb.st_blocks;
 	new->next = NULL;
+	free(tmp);
+	free(path2);
 	return (new);
 }
 
@@ -49,11 +55,11 @@ void	delete_list(t_dir **list)
 	*list = NULL;
 }
 
-void	list_add(t_dir **alst, struct dirent *de)
+void	list_add(t_dir **alst, struct dirent *de, char *path)
 {
 	t_dir *new;
 
-	new = set_list(de);
+	new = set_list(de, path);
 	new->next = *alst;
 	*alst = new;
 }

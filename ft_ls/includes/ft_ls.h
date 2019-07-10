@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 08:37:07 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 10:11:07 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct		s_dir
 
 int error_handle(char * path, DIR *dp, int ierrno, unsigned int flag);
 void				convertDate(char *str);
-t_dir				*set_list(struct dirent *de);
+t_dir				*set_list(struct dirent *de, char *path);
 void				delete_list(t_dir **list);
-void				list_add(t_dir **alst, struct dirent *de);
+void				list_add(t_dir **alst, struct dirent *de, char *path);
 void				basic_print(struct dirent *de, unsigned char flags,
 						DIR *dr);
 void				recursive_print(struct dirent *de, unsigned char flags,
