@@ -6,15 +6,15 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 11:17:49 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 14:46:30 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 10:50:31 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-char	*convert_un(int uid)
+char		*convert_un(int uid)
 {
-	struct passwd *pwd;
+	struct passwd	*pwd;
 
 	pwd = getpwuid(uid);
 	if (pwd == NULL)
@@ -24,7 +24,7 @@ char	*convert_un(int uid)
 	return (NULL);
 }
 
-char	*convert_gn(int gib)
+char		*convert_gn(int gib)
 {
 	struct group *grp;
 
@@ -36,11 +36,15 @@ char	*convert_gn(int gib)
 	return (NULL);
 }
 
-void convertDate(char *str)
+void		convert_date(char *str)
 {
-	char ret[] = "000  0 00:00 ";
-	int i = 4;
-	int j = 0;
+	char	ret[14];
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 4;
+	ft_strcpy(ret, "000  0 00:00 ");
 	while (i < 16)
 	{
 		ret[j] = str[i];

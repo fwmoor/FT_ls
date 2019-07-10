@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/05 12:09:38 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/10 10:13:12 by zmahomed         ###   ########.fr       */
+/*   Updated: 2019/07/10 10:56:11 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_dir	*set_list(struct dirent *de, char *path)
 {
 	t_dir		*new;
 	struct stat	sb;
-	char *path2;
-	char *tmp;
+	char		*path2;
+	char		*tmp;
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);

@@ -6,19 +6,21 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 14:48:22 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 14:47:08 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 10:58:40 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void display_blocks(t_dir *ptr)
+void	display_blocks(t_dir *ptr)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	ft_putstr("total ");
 	while (ptr)
 	{
-		i+=ptr->block;
+		i += ptr->block;
 		ptr = ptr->next;
 	}
 	ft_putnbr(i);
@@ -45,8 +47,7 @@ void	display_l(t_dir *lst)
 	ft_putstr("\t");
 	ft_putnbr(lst->size);
 	ft_putstr("\t");
-	convertDate(ctime(&lst->mtime));
-	ft_putstr(" ");
+	convert_date(ctime(&lst->mtime));
 	ft_putstr(lst->name);
 	ft_putchar('\n');
 }
@@ -64,9 +65,8 @@ void	print_list(t_dir *list, unsigned char flags)
 	{
 		if (flags & 2)
 			display_l(ptr);
-		else
-			if (ft_strncmp(ptr->name, ".", 1) != 0)
-				display_l(ptr);
+		else if (ft_strncmp(ptr->name, ".", 1) != 0)
+			display_l(ptr);
 		ptr = ptr->next;
 	}
 }
