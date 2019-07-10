@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 14:38:36 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 08:37:07 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
-int					check_errors(char *path);
+int error_handle(char * path, DIR *dp, int ierrno, unsigned int flag);
 void				convertDate(char *str);
 t_dir				*set_list(struct dirent *de);
 void				delete_list(t_dir **list);

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 08:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/07/09 14:15:18 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 08:37:38 by zmahomed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_ls(char *path, unsigned char flags)
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
-	if (check_errors(path) == 1)
+	if (error_handle(path, dr, errno, flags) == 1)
 		return ;
 	while ((de = readdir(dr)))
 	{
