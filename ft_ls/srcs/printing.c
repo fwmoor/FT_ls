@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 11:42:29 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 15:15:44 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@ void	display_blocks(t_dir *ptr)
 	int i;
 
 	i = 0;
-	ft_putstr("total ");
+	ft_printf("total ");
 	while (ptr)
 	{
 		i += ptr->block;
 		ptr = ptr->next;
 	}
-	ft_putnbr(i);
-	ft_putstr("\n");
+	ft_printf("%d\n", i);
 }
 
 void	display_l(t_dir *lst)
@@ -39,14 +38,14 @@ void	display_l(t_dir *lst)
 	ft_putstr((lst->mode & S_IROTH) ? "r" : "-");
 	ft_putstr((lst->mode & S_IWOTH) ? "w" : "-");
 	ft_putstr((lst->mode & S_IXOTH) ? "x " : "- ");
-	ft_putnbr(lst->nlink);
-	ft_putstr("\t");
-	ft_putstr(lst->uid);
+	//ft_printf("%d\t",lst->nlink);
+	/*ft_putstr(lst->uid);
 	ft_putstr("\t");
 	ft_putstr(lst->gid);
 	ft_putstr("\t");
 	ft_putnbr(lst->size);
-	ft_putstr("\t");
+	ft_putstr("\t");*/
+	ft_printf("%s %s\t%d\t", lst->uid, lst->gid, lst->size);
 	convert_date(ctime(&lst->mtime));
 	ft_putstr(lst->name);
 	ft_putchar('\n');
@@ -80,16 +79,14 @@ void	print_normal(t_dir *list, unsigned char flags)
 	{
 		if (flags & 2)
 		{
-			ft_putstr(ptr->name);
-			ft_putstr("\t\t");
+			ft_printf("%s\n", ptr->name);
 			ptr = ptr->next;
 		}
 		else
 		{
 			if (ptr->name[0] != '.')
 			{
-				ft_putstr(ptr->name);
-				ft_putstr("\t\t");
+				ft_printf("%s\n", ptr->name);
 			}
 			ptr = ptr->next;
 		}

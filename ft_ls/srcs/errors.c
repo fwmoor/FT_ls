@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 11:41:50 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 13:39:43 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,22 @@
 void	error_handle2(char *path)
 {
 	if (ft_strcmp(path, ".") != 0)
-	{
-		ft_putstr("\n\n");
-		ft_putstr(path);
-		ft_putstr(":\n");
-	}
+		ft_printf("\n%s:\n", path);
 }
 
 void	error_handle3(char *path)
 {
-	ft_putstr("ft_ls: ");
+	ft_printf("ft_ls: ");
 	if (path[ft_strlen(path) - 1] != '/')
-		ft_putstr(path);
-	ft_putstr(": Permission denied\n");
+		ft_printf("%s", path);
+	ft_printf(": Permission denied\n");
 }
 
 int		error_handle(char *path, DIR *dp, int ierrno, unsigned int flag)
 {
 	if (ierrno == 20)
 	{
-		ft_putstr(path);
+		ft_printf("%s", path);
 		return (1);
 	}
 	else if (!dp)
@@ -44,9 +40,7 @@ int		error_handle(char *path, DIR *dp, int ierrno, unsigned int flag)
 			error_handle3(path);
 			return (1);
 		}
-		ft_putstr("ft_ls: ");
-		ft_putstr(path);
-		ft_putstr(": No such file or directory\n");
+		ft_printf("ft_ls: %s: No such file or directory\n", path);
 		return (1);
 	}
 	if (flag & 4)

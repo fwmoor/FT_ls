@@ -2,6 +2,8 @@ NAME = ft_ls
 
 LIBFT_PATH = ./libft/
 
+INCS = ./includes/ft_ls.h ./includes/ft_printf.h
+
 SRCS =	./srcs/flags.c \
 		./srcs/ft_ls.c \
 		./srcs/errors.c \
@@ -11,7 +13,7 @@ SRCS =	./srcs/flags.c \
 		./srcs/printing.c
 
 FLAGS = -Wall -Werror -Wextra
-INC =  -I ./includes/ft_ls.h -I $(LIBFT_PATH)libft.h
+INC =  -I $(INCS) -I $(LIBFT_PATH)libft.h
 
 all: $(NAME)
 

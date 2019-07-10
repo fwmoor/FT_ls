@@ -6,13 +6,14 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:17:29 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 11:41:30 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 11:49:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "../libft/libft.h"
+# include "./ft_ls.h"
 # include <stdio.h>
 # include <errno.h>
 # include <stdarg.h>

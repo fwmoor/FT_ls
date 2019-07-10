@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/06/11 14:02:21 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 12:46:02 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int					ft_memcmp(const void *str1, const void *str2, size_t n);
 
 char				*ft_itoa(int n);
 char				*ft_strnew(size_t size);
+char				*ft_str_upper(char *str);
 char				*ft_strdup(const char *s);
 char				*ft_strtrim(char const *s);
 char				*ft_strchr(const char *s, int c);

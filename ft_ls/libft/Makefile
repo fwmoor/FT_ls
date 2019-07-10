@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+         #
+#    By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/28 12:17:03 by fremoor           #+#    #+#              #
-#    Updated: 2019/06/28 21:29:13 by fwmoor           ###   ########.fr        #
+#    Updated: 2019/07/10 12:46:26 by fremoor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
 	  ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	  ft_tolower.c ft_toupper.c ft_foreach.c ft_strrev.c ft_factorial.c \
-	  ft_sqrt.c ft_power.c
+	  ft_sqrt.c ft_power.c ft_extra.c ft_flags.c ft_middle.c ft_misc.c \
+	  ft_printing.c ft_printf.c ft_strfill.c ft_middle_2.c ft_colours.c \
+	  ft_str_upper.c
 
 SRCO = $(patsubst %.c, %.o, $(SRC))
 

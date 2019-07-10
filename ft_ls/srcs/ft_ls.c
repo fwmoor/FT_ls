@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 11:42:05 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 14:01:55 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int		main(int ac, char **av)
 
 	check = 0;
 	flags = get_flags(ac, av);
+	if (flags & 32)
+		return (1);
 	if (ac == 1)
 		ft_ls(".", flags);
 	else
@@ -100,6 +102,5 @@ int		main(int ac, char **av)
 		if (check == 0)
 			ft_ls(".", flags);
 	}
-	ft_putchar('\n');
-	return (0);
+	return (1);
 }
