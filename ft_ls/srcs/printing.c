@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 15:15:44 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 10:29:47 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,9 @@ void	display_l(t_dir *lst)
 	ft_putstr((lst->mode & S_IROTH) ? "r" : "-");
 	ft_putstr((lst->mode & S_IWOTH) ? "w" : "-");
 	ft_putstr((lst->mode & S_IXOTH) ? "x " : "- ");
-	//ft_printf("%d\t",lst->nlink);
-	/*ft_putstr(lst->uid);
-	ft_putstr("\t");
-	ft_putstr(lst->gid);
-	ft_putstr("\t");
-	ft_putnbr(lst->size);
-	ft_putstr("\t");*/
 	ft_printf("%s %s\t%d\t", lst->uid, lst->gid, lst->size);
 	convert_date(ctime(&lst->mtime));
-	ft_putstr(lst->name);
-	ft_putchar('\n');
+	ft_printf("%s\n", lst->name);
 }
 
 void	print_list(t_dir *list, unsigned char flags)
@@ -85,9 +77,7 @@ void	print_normal(t_dir *list, unsigned char flags)
 		else
 		{
 			if (ptr->name[0] != '.')
-			{
 				ft_printf("%s\n", ptr->name);
-			}
 			ptr = ptr->next;
 		}
 	}

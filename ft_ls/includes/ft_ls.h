@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/11 10:21:12 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 10:44:30 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void				print_output(t_dir *list, unsigned char flags);
 void				frontback_split(t_dir *source, t_dir **front_ref,
 						t_dir **back_ref);
 void				merge_s(t_dir **head_ref, unsigned char flags);
+int					ft_printf(const char *format, ...);
 t_dir				*s_merge(t_dir *a, t_dir *b, unsigned char flags);
 t_dir				*set_list(struct dirent *de, char *path);
 

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:37 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 12:47:37 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 10:30:40 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void		convert_date(char *str)
 	i = 4;
 	ft_strcpy(ret, "000  0 00:00 ");
 	while (i < 16)
-	{
-		ret[j] = str[i];
-		j++;
-		i++;
-	}
+		ret[j++] = str[i++];
 	ft_printf("%s", ret);
 }

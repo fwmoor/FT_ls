@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 13:39:43 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 10:30:55 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int		error_handle(char *path, DIR *dp, int ierrno, unsigned int flag)
 		return (1);
 	}
 	if (flag & 4)
-	{
 		error_handle2(path);
-	}
 	return (0);
 }
