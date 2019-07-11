@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:25:11 by fremoor           #+#    #+#             */
-/*   Updated: 2019/05/22 14:38:31 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 15:26:33 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char	*ft_strrev(char *str)
 {

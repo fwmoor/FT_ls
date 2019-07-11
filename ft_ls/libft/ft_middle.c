@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_middle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 08:26:34 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/09 19:17:46 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/libft.h"
 
 int				ft_middle_n(t_format *tf)
 {

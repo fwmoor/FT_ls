@@ -6,11 +6,11 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:28:12 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 08:17:38 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 09:39:09 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/libft.h"
 
 int				ft_print_sn(t_format *tf, char *str)
 {
@@ -125,7 +125,7 @@ int				ft_print_sc(t_format *tf, char *str)
 			ft_putchar(' ');
 			i++;
 		}
-	print_col(str, min, tf);
+	write(1, str, min);
 	i += (tf->t_form == 'c' && len == 2) ? min - 1 : min;
 	if (tf->flags & 8)
 		while (tf->len-- > min)

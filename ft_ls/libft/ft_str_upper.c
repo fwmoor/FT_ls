@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/10 12:44:31 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 12:44:40 by fremoor          ###   ########.fr       */
+/*   Created: 2019/07/08 08:16:42 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/10 15:26:33 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./includes/libft.h"
 
 char		*ft_str_upper(char *str)
 {

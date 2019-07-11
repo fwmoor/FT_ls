@@ -1,18 +1,10 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/28 12:17:03 by fremoor           #+#    #+#              #
-#    Updated: 2019/07/10 12:46:26 by fremoor          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME =		libftprintf.a
 
-NAME = libft.a
+FLAG =		-Wall -Werror -Wextra -I 
 
-SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
+FTDR =		libft/
+
+FTFL =		ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_isdigit.c ft_isprint.c ft_itoa.c ft_lstadd.c ft_lstdel.c \
 	  ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_lstnew.c ft_memalloc.c \
 	  ft_memccpy.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memdel.c \
@@ -24,32 +16,25 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 	  ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
 	  ft_strrchr.c ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c \
 	  ft_tolower.c ft_toupper.c ft_foreach.c ft_strrev.c ft_factorial.c \
-	  ft_sqrt.c ft_power.c ft_extra.c ft_flags.c ft_middle.c ft_misc.c \
-	  ft_printing.c ft_printf.c ft_strfill.c ft_middle_2.c ft_colours.c \
-	  ft_str_upper.c
+	  ft_sqrt.c ft_power.c ft_str_upper.c ft_extra.c ft_flags.c ft_middle.c \
+	  ft_misc.c ft_printing.c ft_printf.c ft_strfill.c ft_middle_2.c \
+	  get_next_line.c
 
-SRCO = $(patsubst %.c, %.o, $(SRC))
-
-FLAGS = -Wall -Werror -Wextra
+LOBJ =		$(FTFL:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SRCO)
-	@ar rc $(NAME) $(SRCO)
-	@rm -r $(SRCO)
-	@echo "\033[92mLibrary Compiled"
+$(LOBJ): %.o: %.c
+	@gcc -c $(FLAG) FTFL $< -o $@
 
-%.o: %.c
-	@gcc $(FLAGS) -c $< -o $@
+$(NAME): $(LOBJ)
+	@ar rcs $(NAME) $(LOBJ)
 
 clean:
-	@rm -f $(SRCO)
-	@echo "\033[93mAll .o Files Removed"
+	@rm -rf *.o
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo "\033[95mLibrary Removed"
+	@rm -rf $(NAME)
+	@rm -rf a.out
 
-re:	fclean all
-
-.PHONY: all fclean clean re
+re: fclean all

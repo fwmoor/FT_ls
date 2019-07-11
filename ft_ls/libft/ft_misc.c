@@ -6,11 +6,11 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 08:24:38 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/09 08:55:13 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/libft.h"
 
 int					ft_num_len(intmax_t n, int base)
 {

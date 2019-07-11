@@ -6,14 +6,14 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/10 11:46:40 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 10:21:12 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 
 # define FT_LS_H
-# include "./ft_printf.h"
+# include "../libft/includes/libft.h"
 # include <dirent.h>
 # include <sys/stat.h>
 # include <stdio.h>
@@ -21,6 +21,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <uuid/uuid.h>
+# include <errno.h>
 # include <time.h>
 
 typedef struct		s_dir

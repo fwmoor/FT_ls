@@ -6,11 +6,11 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:19:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/08 08:19:09 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/libft.h"
 
 int				ft_middle_p(t_format *tf)
 {

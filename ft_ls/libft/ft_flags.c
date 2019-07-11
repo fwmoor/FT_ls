@@ -6,11 +6,11 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 08:23:24 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 09:53:42 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/11 09:37:57 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "./includes/libft.h"
 
 unsigned char		ft_p_len(char **str)
 {
@@ -73,13 +73,12 @@ int					ft_width(char **str)
 	return (i);
 }
 
-int					ft_format(char **str, va_list ap, int col)
+int					ft_format(char **str, va_list ap)
 {
 	int				i;
 	t_format		tf;
 
 	tf.prec = 0;
-	tf.col = col;
 	tf.flags = ft_flags(str);
 	tf.len = ft_width(str);
 	if (**str == '.')
@@ -101,24 +100,21 @@ int					ft_format(char **str, va_list ap, int col)
 int					ft_format_all(const char *format, va_list ap)
 {
 	int				i;
-	int				col;
 	char			**str;
 
 	i = 0;
-	col = 0;
 	str = (char **)&format;
 	while (**str)
 	{
 		if (**str == '%')
 		{
 			*str += 1;
-			i += ft_format(str, ap, col);
+			i += ft_format(str, ap);
 		}
 		else
 		{
-			col = ft_col(str);
-			if (col == 0)
-				i++;
+			ft_putchar(*((*str)++));
+			i++;
 		}
 	}
 	va_end(ap);

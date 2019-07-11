@@ -2,7 +2,7 @@ NAME = ft_ls
 
 LIBFT_PATH = ./libft/
 
-INCS = ./includes/ft_ls.h ./includes/ft_printf.h
+INCS = ./includes/ft_ls.h
 
 SRCS =	./srcs/flags.c \
 		./srcs/ft_ls.c \
@@ -19,7 +19,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C $(LIBFT_PATH)
-	@gcc $(FLAGS) -o $(NAME) $(SRCS) $(LIBFT_PATH)libft.a
+	@gcc $(FLAGS) -o $(NAME) $(SRCS) $(LIBFT_PATH)libftprintf.a
 
 clean:
 	@make -C $(LIBFT_PATH) clean
