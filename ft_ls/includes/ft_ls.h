@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/11 10:44:30 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/12 10:05:41 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,47 @@
 # include <errno.h>
 # include <time.h>
 
+# define LONG 1
+# define ALL 2
+# define RECUR 4
+# define REVE 8
+# define TIM 16
+# define DOT 32
+# define NOSOR 64
+
 typedef struct		s_dir
 {
+	int				type;
+	int				block;
 	char			*name;
-	mode_t			mode;
-	nlink_t			nlink;
 	char			*uid;
 	char			*gid;
 	off_t			size;
 	time_t			mtime;
-	int				type;
-	int				block;
+	mode_t			mode;
+	nlink_t			nlink;
 	struct s_dir	*next;
 }					t_dir;
 
-int					error_handle(char *path, DIR *dp, int ierrno,
-						unsigned int flag);
-void				convert_date(char *str);
-void				delete_list(t_dir **list);
-void				list_add(t_dir **alst, struct dirent *de, char *path);
-void				basic_print(struct dirent *de, unsigned char flags,
-						DIR *dr);
-void				recursive_print(struct dirent *de, unsigned char flags,
-						char *path);
-unsigned char		get_flags(int ac, char **av);
-void				ft_ls(char *path, unsigned char flags);
-void				recursion(t_dir *list, unsigned char flags, char *path);
+int					err_han4(char *path);
+int					get_flags(int ac, char **av);
+int					ft_printf(const char *format, ...);
+int					err_han(char *path, DIR *dp, int ierrno, int flag);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
-void				print_list(t_dir *list, unsigned char flags);
-void				print_normal(t_dir *list, unsigned char flags);
-void				print_output(t_dir *list, unsigned char flags);
-void				frontback_split(t_dir *source, t_dir **front_ref,
-						t_dir **back_ref);
-void				merge_s(t_dir **head_ref, unsigned char flags);
-int					ft_printf(const char *format, ...);
-t_dir				*s_merge(t_dir *a, t_dir *b, unsigned char flags);
+void				convert_date(char *str);
+void				delete_list(t_dir **list);
+void				ft_ls(char *path, int flags);
+void				print_long(t_dir *list, int flags);
+void				print_normal(t_dir *list, int flags);
+void				print_output(t_dir *list, int flags);
+void				merge_s(t_dir **head_ref, int flags);
+void				recursion(t_dir *list, int flags, char *path);
+void				fb_split(t_dir *src, t_dir **front, t_dir **back);
+void				basic_print(struct dirent *de, int flags, DIR *dr);
+void				list_add(t_dir **alst, struct dirent *de, char *path);
+void				recursive_print(struct dirent *de, int flags, char *path);
+t_dir				*s_merge(t_dir *a, t_dir *b, int flags);
 t_dir				*set_list(struct dirent *de, char *path);
 
 #endif

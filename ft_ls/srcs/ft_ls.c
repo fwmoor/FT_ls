@@ -6,27 +6,27 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/11 10:34:23 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/12 10:13:52 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
 
-void	recursion(t_dir *list, unsigned char flags, char *path)
+void	recursion(t_dir *list, int flags, char *path)
 {
 	t_dir	*ptr;
 	char	*s1;
 	char	*s2;
 
 	ptr = list;
-	if (flags & 4)
+	if (flags & RECUR)
 		while (ptr != NULL)
 		{
 			if ((ptr->type == 4) && (ft_strcmp(ptr->name, ".") != 0)
 			&& (ft_strcmp(ptr->name, "..") != 0))
 			{
-				if (!(flags & 2) && (ptr->name[0] == '.'))
+				if (!(flags & ALL) && (ptr->name[0] == '.'))
 				{
 					ptr = ptr->next;
 					continue ;
@@ -41,7 +41,7 @@ void	recursion(t_dir *list, unsigned char flags, char *path)
 		}
 }
 
-void	ft_ls(char *path, unsigned char flags)
+void	ft_ls(char *path, int flags)
 {
 	struct dirent	*de;
 	t_dir			*initial;
@@ -50,7 +50,7 @@ void	ft_ls(char *path, unsigned char flags)
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
-	if (error_handle(path, dr, errno, flags) == 1)
+	if (err_han(path, dr, errno, flags) == 1)
 		return ;
 	while ((de = readdir(dr)))
 	{
@@ -66,7 +66,7 @@ void	ft_ls(char *path, unsigned char flags)
 	delete_list(&initial);
 }
 
-int		execute_args(int ac, char **av, unsigned char flags)
+int		check_arg(int ac, char **av, int flags)
 {
 	int i;
 	int check;
@@ -87,19 +87,19 @@ int		execute_args(int ac, char **av, unsigned char flags)
 
 int		main(int ac, char **av)
 {
-	unsigned char	flags;
+	int				flags;
 	int				check;
 
 	check = 0;
 	flags = get_flags(ac, av);
-	if (flags & 32)
+	if (flags & DOT)
 		return (1);
 	if (ac == 1)
 		ft_ls(".", flags);
 	else
 	{
-		check = execute_args(ac, av, flags);
-		if (check == 0)
+		check = check_arg(ac, av, flags);
+		if (check == 0 && !(flags & 128))
 			ft_ls(".", flags);
 	}
 	return (1);
