@@ -6,13 +6,13 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 08:26:34 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:36:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-int				ft_middle_n(t_format *tf)
+int				ft_middle_n(t_format *tf, int fd)
 {
 	int			i;
 	char		*str;
@@ -21,12 +21,12 @@ int				ft_middle_n(t_format *tf)
 	str = ft_getstr_d(tf);
 	str = (ft_strcmp(str, "0") == 0 && tf->t_form == 'd' &&
 			tf->flags & 32 && tf->prec <= 0) ? ft_strdup("") : str;
-	i += ft_print_sn(tf, str);
+	i += ft_print_sn(tf, str, fd);
 	free(str);
 	return (i);
 }
 
-int				ft_middle_u(t_format *tf)
+int				ft_middle_u(t_format *tf, int fd)
 {
 	int			i;
 	int			base;
@@ -41,12 +41,12 @@ int				ft_middle_u(t_format *tf)
 		tf->flags &= ~(16);
 	str = (ft_strcmp(str, "0") == 0 && tf->t_form == 'o' &&
 			tf->flags & 32 && tf->prec <= 0) ? ft_strdup("") : str;
-	i += ft_print_un(tf, str);
+	i += ft_print_un(tf, str, fd);
 	free(str);
 	return (i);
 }
 
-int				ft_middle_x(t_format *tf)
+int				ft_middle_x(t_format *tf, int fd)
 {
 	int			i;
 	char		*str;
@@ -60,7 +60,7 @@ int				ft_middle_x(t_format *tf)
 			tf->prec <= 0) ? ft_strdup("") : str;
 	if (tf->flags & 32)
 		tf->flags &= ~(16);
-	i += ft_print_ux(tf, str);
+	i += ft_print_ux(tf, str, fd);
 	free(str);
 	return (i);
 }

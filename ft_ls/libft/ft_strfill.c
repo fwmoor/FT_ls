@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:35:45 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:34:26 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ char				*ft_getstr_d(t_format *tf)
 
 	if (tf->p_len & 4 || tf->t_form == 'D')
 		str = ft_itoa((long)va_arg(*tf->ap, long));
+	else if (tf->p_len & 32)
+		str = ft_itoa(va_arg(*tf->ap, size_t));
+	else if (tf->p_len & 16)
+		str = ft_itoa(va_arg(*tf->ap, intmax_t));
+	else if (tf->p_len & 8)
+		str = ft_itoa(va_arg(*tf->ap, long long));
 	else if (tf->p_len & 64)
 		str = ft_itoa((char)va_arg(*tf->ap, intmax_t));
 	else if (tf->p_len & 2)
 		str = ft_itoa((short)va_arg(*tf->ap, intmax_t));
-	else if (tf->p_len & 8)
-		str = ft_itoa(va_arg(*tf->ap, long long));
-	else if (tf->p_len & 16)
-		str = ft_itoa(va_arg(*tf->ap, intmax_t));
-	else if (tf->p_len & 32)
-		str = ft_itoa(va_arg(*tf->ap, size_t));
 	else
 		str = ft_itoa(va_arg(*tf->ap, int));
 	return (str);
@@ -39,16 +39,16 @@ char				*ft_getstr_u(t_format *tf, int base)
 
 	if (tf->p_len & 4 || tf->t_form == 'O' || tf->t_form == 'U')
 		str = ft_itoa_base_u(va_arg(*tf->ap, unsigned long), base);
-	else if (tf->p_len & 2 && !(tf->p_len & 64))
-		str = ft_itoa_base_u((unsigned short)va_arg(*tf->ap, unsigned), base);
-	else if (tf->p_len & 64)
-		str = ft_itoa_base_u((unsigned char)va_arg(*tf->ap, unsigned), base);
-	else if (tf->p_len & 8)
-		str = ft_itoa_base_u(va_arg(*tf->ap, unsigned long long), base);
-	else if (tf->p_len & 16)
-		str = ft_itoa_base_u(va_arg(*tf->ap, uintmax_t), base);
 	else if (tf->p_len & 32)
 		str = ft_itoa_base_u(va_arg(*tf->ap, size_t), base);
+	else if (tf->p_len & 16)
+		str = ft_itoa_base_u(va_arg(*tf->ap, uintmax_t), base);
+	else if (tf->p_len & 8)
+		str = ft_itoa_base_u(va_arg(*tf->ap, unsigned long long), base);
+	else if (tf->p_len & 64)
+		str = ft_itoa_base_u((unsigned char)va_arg(*tf->ap, unsigned), base);
+	else if (tf->p_len & 2 && !(tf->p_len & 64))
+		str = ft_itoa_base_u((unsigned short)va_arg(*tf->ap, unsigned), base);
 	else
 		str = ft_itoa_base_u(va_arg(*tf->ap, unsigned int), base);
 	return (str);
@@ -66,7 +66,7 @@ char				*ft_getstr_p(t_format *tf)
 	return (str);
 }
 
-int					ft_getstr_all(t_format *tf)
+int					ft_getstr_all(t_format *tf, int fd)
 {
 	int				i;
 	char			*str;
@@ -79,16 +79,16 @@ int					ft_getstr_all(t_format *tf)
 			str = ft_middle_s(tf);
 		else
 			str = ft_middle_c(tf);
-		i += ft_print_sc(tf, str);
+		i += ft_print_sc(tf, str, fd);
 	}
 	else if (tf->t_form == 'd' || tf->t_form == 'i' || tf->t_form == 'D')
-		i = ft_middle_n(tf);
+		i = ft_middle_n(tf, fd);
 	else if (tf->t_form == 'o' || tf->t_form == 'u' || tf->t_form == 'U' ||
 			tf->t_form == 'O')
-		i = ft_middle_u(tf);
+		i = ft_middle_u(tf, fd);
 	else if (tf->t_form == 'x' || tf->t_form == 'X')
-		i = ft_middle_x(tf);
+		i = ft_middle_x(tf, fd);
 	else if (tf->t_form == 'p')
-		i = ft_middle_p(tf);
+		i = ft_middle_p(tf, fd);
 	return (i);
 }

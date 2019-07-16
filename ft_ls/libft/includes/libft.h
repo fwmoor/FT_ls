@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/21 11:49:55 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/11 10:10:23 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:43:12 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,24 +159,24 @@ int					get_next_line(const int fd, char **line);
 ** Printf functions
 */
 
-int					ft_width(char **str);
+int					ft_width(char **str, va_list ap, t_format *tf);
 int					ft_correct_form(char c);
-int					ft_middle_n(t_format *tf);
-int					ft_middle_u(t_format *tf);
-int					ft_middle_x(t_format *tf);
-int					ft_middle_p(t_format *tf);
-int					ft_getstr_all(t_format *tf);
+int					ft_middle_n(t_format *tf, int fd);
+int					ft_middle_u(t_format *tf, int fd);
+int					ft_middle_x(t_format *tf, int fd);
+int					ft_middle_p(t_format *tf, int fd);
+int					ft_getstr_all(t_format *tf, int fd);
 int					ft_num_len(intmax_t n, int base);
-int					ft_format(char **str, va_list ap);
+int					ft_format(char **str, va_list ap, int fd);
 int					ft_printf(const char *format, ...);
 int					ft_num_len_u(uintmax_t n, int base);
-int					ft_print_sc(t_format *tf, char *str);
-int					ft_print_sn(t_format *tf, char *str);
-int					ft_print_un(t_format *tf, char *str);
-int					ft_print_ux(t_format *tf, char *str);
-int					ft_print_up(t_format *tf, char *str);
-int					ft_after(t_format *tf, long len, char *str);
-int					ft_format_all(const char *format, va_list ap);
+int					ft_print_sc(t_format *tf, char *str, int fd);
+int					ft_print_sn(t_format *tf, char *str, int fd);
+int					ft_print_un(t_format *tf, char *str, int fd);
+int					ft_print_ux(t_format *tf, char *str, int fd);
+int					ft_print_up(t_format *tf, char *str, int fd);
+int					ft_after(t_format *tf, long len, char *str, int fd);
+int					ft_format_all(const char *format, va_list ap, int fd);
 char				*ft_getstr_d(t_format *tf);
 char				*ft_getstr_p(t_format *tf);
 char				*ft_middle_c(t_format *tf);

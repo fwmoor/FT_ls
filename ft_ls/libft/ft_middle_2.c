@@ -6,20 +6,20 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:19:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/10 15:32:20 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:36:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-int				ft_middle_p(t_format *tf)
+int				ft_middle_p(t_format *tf, int fd)
 {
 	int			i;
 	char		*str;
 
 	i = 0;
 	str = ft_getstr_p(tf);
-	i += ft_print_up(tf, str);
+	i += ft_print_up(tf, str, fd);
 	free(str);
 	return (i);
 }

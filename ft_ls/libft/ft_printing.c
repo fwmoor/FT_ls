@@ -6,13 +6,13 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 08:28:12 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/11 09:39:09 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 10:35:14 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/libft.h"
 
-int				ft_print_sn(t_format *tf, char *str)
+int				ft_print_sn(t_format *tf, char *str, int fd)
 {
 	long		len;
 	long		max;
@@ -28,17 +28,17 @@ int				ft_print_sn(t_format *tf, char *str)
 	if (!(tf->flags & 8) & !(tf->flags & 1))
 		while (tf->len-- > max)
 		{
-			ft_putchar(' ');
+			ft_putchar_fd(' ', fd);
 			i++;
 		}
 	if (*str != '-' && (tf->flags & 4))
-		ft_putchar('+');
+		ft_putchar_fd('+', fd);
 	else if (*str != '-' && (tf->flags & 2))
-		ft_putchar(' ');
-	return (i + ft_after(tf, len, str));
+		ft_putchar_fd(' ', fd);
+	return (i + ft_after(tf, len, str, fd));
 }
 
-int				ft_print_un(t_format *tf, char *str)
+int				ft_print_un(t_format *tf, char *str, int fd)
 {
 	int		i;
 	long	len;
@@ -52,15 +52,15 @@ int				ft_print_un(t_format *tf, char *str)
 	if (!(tf->flags & 8) & !(tf->flags & 1))
 		while (tf->len-- > max)
 		{
-			ft_putchar(' ');
+			ft_putchar_fd(' ', fd);
 			i++;
 		}
 	if (tf->flags & 16 && tf->t_form == 'o')
-		ft_putchar('0');
-	return (i + ft_after(tf, len, str));
+		ft_putchar_fd('0', fd);
+	return (i + ft_after(tf, len, str, fd));
 }
 
-int				ft_print_ux(t_format *tf, char *str)
+int				ft_print_ux(t_format *tf, char *str, int fd)
 {
 	int		i;
 	long	len;
@@ -77,17 +77,17 @@ int				ft_print_ux(t_format *tf, char *str)
 	if (!(tf->flags & 8) & !(tf->flags & 1))
 		while (tf->len-- > max)
 		{
-			ft_putchar(' ');
+			ft_putchar_fd(' ', fd);
 			i++;
 		}
 	if (tf->flags & 16 && tf->t_form == 'x' && ft_strcmp(str, "0") != 0)
-		ft_putstr("0x");
+		ft_putstr_fd("0x", fd);
 	else if (tf->flags & 16 && tf->t_form == 'X' && ft_strcmp(str, "0") != 0)
-		ft_putstr("0X");
-	return (i + ft_after(tf, len, str));
+		ft_putstr_fd("0X", fd);
+	return (i + ft_after(tf, len, str, fd));
 }
 
-int				ft_print_up(t_format *tf, char *str)
+int				ft_print_up(t_format *tf, char *str, int fd)
 {
 	int		i;
 	long	len;
@@ -100,15 +100,17 @@ int				ft_print_up(t_format *tf, char *str)
 	if (!(tf->flags & 8) & !(tf->flags & 1))
 		while (tf->len-- > max)
 		{
-			ft_putchar(' ');
+			ft_putchar_fd(' ', fd);
 			i++;
 		}
-	ft_putstr("0x");
+	ft_putstr_fd("0x", fd);
 	i += 2;
-	return (i + ft_after(tf, len, str));
+	if (ft_strcmp(str, "0") == 0)
+		return (i);
+	return (i + ft_after(tf, len, str, fd));
 }
 
-int				ft_print_sc(t_format *tf, char *str)
+int				ft_print_sc(t_format *tf, char *str, int fd)
 {
 	int		i;
 	int		len;
@@ -122,15 +124,15 @@ int				ft_print_sc(t_format *tf, char *str)
 	if (!(tf->flags & 8))
 		while (tf->len-- > min)
 		{
-			ft_putchar(' ');
+			(tf->flags & 1) ? ft_putchar_fd('0', fd) : ft_putchar_fd(' ', fd);
 			i++;
 		}
-	write(1, str, min);
+	write(fd, str, min);
 	i += (tf->t_form == 'c' && len == 2) ? min - 1 : min;
 	if (tf->flags & 8)
 		while (tf->len-- > min)
 		{
-			ft_putchar(' ');
+			ft_putchar_fd(' ', fd);
 			i++;
 		}
 	free(str);
