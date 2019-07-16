@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/16 11:25:02 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/16 12:39:00 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,27 +39,29 @@ void	display_l(t_dir *lst)
 	ft_putstr((lst->mode & S_IWOTH) ? "w" : "-");
 	ft_putstr((lst->mode & S_IXOTH) ? "x " : "- ");
 	ft_printf("%*d ", lst->max + 1, lst->nlink);
-	ft_printf("%s %s\t%d\t", lst->uid, lst->gid, lst->size);
+	ft_printf("%s  %s", lst->uid, lst->gid);
+	ft_printf("%*d ", lst->maxs + 2, lst->size);
 	convert_date(ctime(&lst->mtime));
 	ft_printf("%s\n", lst->name);
 }
 
 void	print_long(t_dir *list, int flags)
 {
-	int   i;
 	t_dir *ptr;
 	t_dir *ptr2;
 	t_dir *ptr3;
+	t_dir *ptr4;
 
 	ptr = list;
 	ptr2 = list;
 	ptr3 = list;
+	ptr4 = list;
 	if (flags & LONG)
 		print_block(ptr2);
-	i = long_nlink(ptr3);
 	while (ptr != NULL)
 	{
-		ptr->max = i;
+		ptr->max = long_nlink(ptr3);
+		ptr->maxs= long_size(ptr4);
 		if (flags & ALL)
 			display_l(ptr);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)
