@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/16 10:52:46 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/17 10:56:05 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_ls(char *path, int flags)
 	}
 	closedir(dr);
 	merge_s(&initial, flags);
-	print_output(initial, flags);
+	print_output(initial, flags, path);
 	recursion(initial, flags, path);
 	delete_list(&initial);
 }

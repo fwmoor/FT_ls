@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/16 12:32:13 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/17 10:45:39 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ typedef struct		s_dir
 }					t_dir;
 
 int					err_han4(char *path);
-int					long_size(t_dir *nodes);
-int					long_nlink(t_dir *nodes);
+int					long_size(t_dir *nodes, int flags);
+int					long_nlink(t_dir *nodes, int flags);
 int					get_flags(int ac, char **av);
 int					ft_printf(const char *format, ...);
 int					err_han(char *path, DIR *dp, int ierrno, int flag);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
+void				display_l(t_dir *lst, char *path);
+void				print_link(t_dir *lst, char *path);
 void				convert_date(char *str);
 void				delete_list(t_dir **list);
 void				ft_ls(char *path, int flags);
-void				print_long(t_dir *list, int flags);
+void				print_long(t_dir *list, int flags, char *path);
 void				print_normal(t_dir *list, int flags);
-void				print_output(t_dir *list, int flags);
+void				print_output(t_dir *list, int flags, char *path);
 void				merge_s(t_dir **head_ref, int flags);
 void				recursion(t_dir *list, int flags, char *path);
 void				fb_split(t_dir *src, t_dir **front, t_dir **back);

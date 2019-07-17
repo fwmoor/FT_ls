@@ -6,13 +6,13 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/16 12:39:00 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/17 10:45:58 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	print_block(t_dir *ptr)
+void	print_block(t_dir *ptr, int flags)
 {
 	int i;
 
@@ -20,32 +20,31 @@ void	print_block(t_dir *ptr)
 	ft_printf("total ");
 	while (ptr)
 	{
-		i += ptr->block;
+		if ((flags & ALL && ft_strncmp(ptr->name, ".", 1) == 0) ||
+			ft_strncmp(ptr->name, ".", 1) != 0)
+			i += ptr->block;
 		ptr = ptr->next;
 	}
 	ft_printf("%d\n", i);
 }
 
-void	display_l(t_dir *lst)
+void	print_link(t_dir *lst, char *path)
 {
-	ft_putstr((S_ISDIR(lst->mode)) ? "d" : "-");
-	ft_putstr((lst->mode & S_IRUSR) ? "r" : "-");
-	ft_putstr((lst->mode & S_IWUSR) ? "w" : "-");
-	ft_putstr((lst->mode & S_IXUSR) ? "x" : "-");
-	ft_putstr((lst->mode & S_IRGRP) ? "r" : "-");
-	ft_putstr((lst->mode & S_IWGRP) ? "w" : "-");
-	ft_putstr((lst->mode & S_IXGRP) ? "x" : "-");
-	ft_putstr((lst->mode & S_IROTH) ? "r" : "-");
-	ft_putstr((lst->mode & S_IWOTH) ? "w" : "-");
-	ft_putstr((lst->mode & S_IXOTH) ? "x " : "- ");
-	ft_printf("%*d ", lst->max + 1, lst->nlink);
-	ft_printf("%s  %s", lst->uid, lst->gid);
-	ft_printf("%*d ", lst->maxs + 2, lst->size);
-	convert_date(ctime(&lst->mtime));
-	ft_printf("%s\n", lst->name);
+	char		buffer[1025];
+	char		*tpath;
+	char		*tmp;
+
+	ft_bzero(&buffer, 1025);
+	tmp = ft_strjoin(path, "/");
+	tpath = ft_strjoin(tmp, lst->name);
+	ft_strdel(&tmp);
+	readlink(tpath, buffer, 1024);
+	ft_putstr(" -> ");
+	ft_putstr(buffer);
+	ft_strdel(&tpath);
 }
 
-void	print_long(t_dir *list, int flags)
+void	print_long(t_dir *list, int flags, char *path)
 {
 	t_dir *ptr;
 	t_dir *ptr2;
@@ -57,15 +56,15 @@ void	print_long(t_dir *list, int flags)
 	ptr3 = list;
 	ptr4 = list;
 	if (flags & LONG)
-		print_block(ptr2);
+		print_block(ptr2, flags);
 	while (ptr != NULL)
 	{
-		ptr->max = long_nlink(ptr3);
-		ptr->maxs= long_size(ptr4);
+		ptr->max = long_nlink(ptr3, flags);
+		ptr->maxs= long_size(ptr4, flags);
 		if (flags & ALL)
-			display_l(ptr);
+			display_l(ptr, path);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)
-			display_l(ptr);
+			display_l(ptr, path);
 		ptr = ptr->next;
 	}
 }
@@ -91,10 +90,10 @@ void	print_normal(t_dir *list, int flags)
 	}
 }
 
-void	print_output(t_dir *list, int flags)
+void	print_output(t_dir *list, int flags, char *path)
 {
 	if (flags & LONG)
-		print_long(list, flags);
+		print_long(list, flags, path);
 	else
 		print_normal(list, flags);
 }
