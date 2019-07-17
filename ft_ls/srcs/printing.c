@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/17 10:45:58 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/17 11:22:48 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	print_link(t_dir *lst, char *path)
 	tpath = ft_strjoin(tmp, lst->name);
 	ft_strdel(&tmp);
 	readlink(tpath, buffer, 1024);
-	ft_putstr(" -> ");
-	ft_putstr(buffer);
+	ft_printf(" -> %s", buffer);
 	ft_strdel(&tpath);
 }
 
@@ -60,7 +59,7 @@ void	print_long(t_dir *list, int flags, char *path)
 	while (ptr != NULL)
 	{
 		ptr->max = long_nlink(ptr3, flags);
-		ptr->maxs= long_size(ptr4, flags);
+		ptr->maxs = long_size(ptr4, flags);
 		if (flags & ALL)
 			display_l(ptr, path);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)

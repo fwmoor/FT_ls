@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/17 10:47:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/17 11:22:56 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				long_size(t_dir *nodes, int flags)
 	{
 		if ((flags & ALL && ft_strncmp(nodes->name, ".", 1) == 0) ||
 			ft_strncmp(nodes->name, ".", 1) != 0)
-			if (ft_num_len(nodes->size, 10) > i)
+			if (ft_num_len(nodes->size, 10) >= i)
 				i = ft_num_len(nodes->size, 10);
 		nodes = nodes->next;
 	}
