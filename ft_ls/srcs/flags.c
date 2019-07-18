@@ -15,7 +15,7 @@
 void			illegal_flags(char flag)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", flag);
-	ft_printf("usage: ft_ls [-Raflrt] [file ...]\n");
+	ft_printf("usage: ./ft_ls [-Raflrt] [file ...]\n");
 	exit (1);
 }
 
