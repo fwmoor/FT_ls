@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/17 11:22:56 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/18 18:54:35 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				long_size(t_dir *nodes, int flags)
 {
 	int			i;
 
+	i = 0;
 	while (nodes)
 	{
 		if ((flags & ALL && ft_strncmp(nodes->name, ".", 1) == 0) ||

@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/17 20:30:25 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/18 19:01:14 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ void	err_han3(char *path)
 	if (path[ft_strlen(path) - 1] != '/')
 		ft_printf("%s", path);
 	ft_printf(": Permission denied\n");
-}
-
-int	err_han4(char *path)
-{
-	ft_printf("ft_ls: %s: No such file or directory\n", path);
-	return (128);
 }
 
 int		err_han(char *path, DIR *dp, int ierrno, int flag)

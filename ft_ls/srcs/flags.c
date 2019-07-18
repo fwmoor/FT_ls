@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:56 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 08:09:07 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/18 19:02:32 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,31 @@ int				check_flags(char c)
 	else if (c == 'f')
 		return (NOSOR);
 	else
-		return (0);
+		return (256);
 }
 
 int				get_flags(int ac, char **av)
 {
 	int				i;
-	int				t;
 	int				j;
 	int				flags;
 
 	flags = 0;
 	i = 0;
-	while (++i < ac && av[i][0] == '-')
+	while (++i < ac)
 	{
 		j = 0;
 		if (av[i][j++] == '-')
 		{
-			t = j;
+			if (av[i][j] == '-' && av[i][j + 1] != '-')
+				break ;
 			while (av[i][j])
-				flags |= check_flags(av[i][j++]);
-			if ((flags== 0 || flags & 128))
-				flags |= err_han4(av[i]);
-			if (flags == 0)
-					illegal_flags(av[i][t]);
+			{
+				flags |= check_flags(av[i][j]);
+				if (flags & 256)
+					illegal_flags(av[i][j]);
+				j++;
+			}
 		}
 		else
 			break ;
