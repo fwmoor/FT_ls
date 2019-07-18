@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:56 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 19:02:32 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/18 19:50:09 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,22 @@ int				get_flags(int ac, char **av)
 	while (++i < ac)
 	{
 		j = 0;
-		if (av[i][j++] == '-')
+		if (av[i][j++] == '-' && ft_strlen(av[i]) > 1)
 		{
 			if (av[i][j] == '-' && av[i][j + 1] != '-')
 				break ;
 			while (av[i][j])
 			{
 				flags |= check_flags(av[i][j]);
-				if (flags & 256)
+				if (flags & 256 && !(flags & 512))
 					illegal_flags(av[i][j]);
+				else if (flags & 256 && flags & 512)
+					ft_printf("ft_ls: %s: No such file or directory\n", av[i]);
 				j++;
 			}
 		}
 		else
-			break ;
+			flags |= 512;
 	}
 	return (flags);
 }
