@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 19:46:44 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/18 20:51:17 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		check_arg(int ac, char **av, int flags)
 	check = 0;
 	while (i < ac)
 	{
-		if (av[i][0] != '-' || (av[i][0] == '-' && av[i][1] == '\0'))
+		if (av[i][0] != '-')
 		{
 			ft_ls(av[i], flags);
 			check = 1;
@@ -97,7 +97,7 @@ int		main(int ac, char **av)
 	else
 	{
 		check = check_arg(ac, av, flags);
-		if (check == 0)
+		if (check == 0 && !(flags & 512))
 			ft_ls(".", flags);
 	}
 	return (1);
