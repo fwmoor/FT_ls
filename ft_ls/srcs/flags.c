@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:56 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 20:48:43 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/19 09:59:54 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			illegal_flags(char flag)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", flag);
-	ft_printf("usage: ./ft_ls [-Raflrt] [file ...]\n");
+	ft_printf("usage: ./ft_ls [-Raflrt1] [file ...]\n");
 	exit (1);
 }
 
@@ -23,18 +23,19 @@ int				check_flags(char c)
 {
 	if (c == 'l')
 		return (LONG);
-	else if (c == 'a')
+	if (c == 'a')
 		return (ALL);
-	else if (c == 'R')
+	if (c == 'R')
 		return (RECUR);
-	else if (c == 'r')
+	if (c == 'r')
 		return (REVE);
-	else if (c == 't')
+	if (c == 't')
 		return (TIM);
-	else if (c == 'f')
+	if (c == 'f')
 		return (NOSOR);
-	else
-		return (256);
+	if (c == '1')
+		return (ONE);
+	return (ERROR);
 }
 
 int				get_flags(int ac, char **av)
@@ -50,22 +51,18 @@ int				get_flags(int ac, char **av)
 		j = 0;
 		if (av[i][j++] == '-')
 		{
-			if (ft_strlen(av[i]) == 1)
-				flags |= 512;
 			if (av[i][j] == '-' && av[i][j + 1] != '-')
 				break ;
 			while (av[i][j])
 			{
 				flags |= check_flags(av[i][j]);
-				if (flags & 256 && !(flags & 512))
+				if (flags & ERROR)
 					illegal_flags(av[i][j]);
 				j++;
 			}
-			if (flags & 512)
-				ft_printf("ft_ls: %s: No such file or directory\n", av[i]);
 		}
 		else
-			flags |= 512;
+			break ;
 	}
 	return (flags);
 }

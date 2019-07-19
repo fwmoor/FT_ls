@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 20:51:17 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/19 09:49:10 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,11 @@ void	ft_ls(char *path, int flags)
 	delete_list(&initial);
 }
 
-int		check_arg(int ac, char **av, int flags)
-{
-	int i;
-	int check;
-
-	i = 1;
-	check = 0;
-	while (i < ac)
-	{
-		if (av[i][0] != '-')
-		{
-			ft_ls(av[i], flags);
-			check = 1;
-		}
-		i++;
-	}
-	return (check);
-}
-
 int		main(int ac, char **av)
 {
 	int				flags;
 	int				check;
+	char			*args[ac];
 
 	check = 0;
 	flags = get_flags(ac, av);
@@ -96,7 +78,8 @@ int		main(int ac, char **av)
 		ft_ls(".", flags);
 	else
 	{
-		check = check_arg(ac, av, flags);
+		add_args(args, ac, av);
+		check = check_arg(ac, flags, args);
 		if (check == 0 && !(flags & 512))
 			ft_ls(".", flags);
 	}

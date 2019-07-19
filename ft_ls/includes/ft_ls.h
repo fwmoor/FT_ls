@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/18 19:47:35 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/19 09:58:22 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define TIM 16
 # define DOT 32
 # define NOSOR 64
+# define ONE 128
+# define ERROR 256
 
 typedef struct		s_dir
 {
@@ -49,12 +51,14 @@ typedef struct		s_dir
 }					t_dir;
 
 int					long_size(t_dir *nodes, int flags);
+int					check_arg(int ac, int flags, char **args);
 int					long_nlink(t_dir *nodes, int flags);
 int					get_flags(int ac, char **av);
 int					ft_printf(const char *format, ...);
 int					err_han(char *path, DIR *dp, int ierrno, int flag);
 char				*convert_un(int uid);
 char				*convert_gn(int gib);
+void   				add_args(char **args, int ac, char **av);
 void				display_l(t_dir *lst, char *path);
 void				print_link(t_dir *lst, char *path);
 void				convert_date(char *str);
