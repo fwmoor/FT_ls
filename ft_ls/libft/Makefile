@@ -29,6 +29,7 @@ $(LOBJ): %.o: %.c
 
 $(NAME): $(LOBJ)
 	@ar rcs $(NAME) $(LOBJ)
+	@ranlib $(NAME)
 
 clean:
 	@rm -rf *.o
@@ -38,3 +39,5 @@ fclean: clean
 	@rm -rf a.out
 
 re: fclean all
+
+.PHONY: all fclean clean re

@@ -6,18 +6,18 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 10:19:52 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 14:28:42 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_ls.h"
 
-void	recursion(t_dir *list, int flags, char *path)
+void				recursion(t_dir *list, int flags, char *path)
 {
-	t_dir	*ptr;
-	char	*s1;
-	char	*s2;
+	t_dir			*ptr;
+	char			*s1;
+	char			*s2;
 
 	ptr = list;
 	if (flags & RECUR)
@@ -41,7 +41,7 @@ void	recursion(t_dir *list, int flags, char *path)
 		}
 }
 
-void	ft_ls(char *path, int flags)
+void				ft_ls(char *path, int flags)
 {
 	struct dirent	*de;
 	t_dir			*initial;
@@ -66,7 +66,7 @@ void	ft_ls(char *path, int flags)
 	delete_list(&initial);
 }
 
-int		main(int ac, char **av)
+int					main(int ac, char **av)
 {
 	int				flags;
 	int				num_args;

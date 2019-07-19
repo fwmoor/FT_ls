@@ -6,18 +6,18 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 11:35:01 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 16:10:05 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_dir			*set_list(struct dirent *de, char *path)
+t_dir				*set_list(struct dirent *de, char *path)
 {
-	t_dir		*new;
-	struct stat	sb;
-	char		*path2;
-	char		*tmp;
+	t_dir			*new;
+	struct stat		sb;
+	char			*path2;
+	char			*tmp;
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
@@ -40,9 +40,9 @@ t_dir			*set_list(struct dirent *de, char *path)
 	return (new);
 }
 
-int				long_nlink(t_dir *nodes, int flags)
+int					long_nlink(t_dir *nodes, int flags)
 {
-	int			i;
+	int				i;
 
 	i = 0;
 	while (nodes)
@@ -56,9 +56,9 @@ int				long_nlink(t_dir *nodes, int flags)
 	return (i);
 }
 
-int				long_size(t_dir *nodes, int flags)
+int					long_size(t_dir *nodes, int flags)
 {
-	int			i;
+	int				i;
 
 	i = 0;
 	while (nodes)
@@ -72,25 +72,27 @@ int				long_size(t_dir *nodes, int flags)
 	return (i);
 }
 
-void			delete_list(t_dir **list)
+void				delete_list(t_dir **list)
 {
-	t_dir 		*current;
-	t_dir 		*next;
+	t_dir			*current;
+	t_dir			*next;
 
 	current = *list;
 	while (current)
 	{
 		next = current->next;
 		free(current->name);
+		free(current->uid);
+		free(current->gid);
 		free(current);
 		current = next;
 	}
 	*list = NULL;
 }
 
-void	list_add(t_dir **alst, struct dirent *de, char *path)
+void				list_add(t_dir **alst, struct dirent *de, char *path)
 {
-	t_dir *new;
+	t_dir			*new;
 
 	new = set_list(de, path);
 	new->next = *alst;

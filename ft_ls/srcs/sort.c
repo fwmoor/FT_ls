@@ -6,17 +6,17 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:21 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 11:42:57 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 14:31:00 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void		rev_lst(t_dir **head)
+void				rev_lst(t_dir **head)
 {
-	t_dir	*cur;
-	t_dir	*next;
-	t_dir	*prev;
+	t_dir			*cur;
+	t_dir			*next;
+	t_dir			*prev;
 
 	next = NULL;
 	prev = NULL;
@@ -31,9 +31,9 @@ void		rev_lst(t_dir **head)
 	*head = prev;
 }
 
-t_dir		*merge_time(t_dir *a, t_dir *b, int flag)
+t_dir				*merge_time(t_dir *a, t_dir *b, int flag)
 {
-	t_dir *result;
+	t_dir			*result;
 
 	result = NULL;
 	if (a == NULL)
@@ -60,11 +60,11 @@ t_dir		*merge_time(t_dir *a, t_dir *b, int flag)
 	return (result);
 }
 
-void		merge_s(t_dir **first, int flags)
+void				merge_s(t_dir **first, int flags)
 {
-	t_dir *head;
-	t_dir *a;
-	t_dir *b;
+	t_dir			*head;
+	t_dir			*a;
+	t_dir			*b;
 
 	head = *first;
 	if (!(flags & NOSOR))
@@ -83,9 +83,9 @@ void		merge_s(t_dir **first, int flags)
 		rev_lst(first);
 }
 
-t_dir		*s_merge(t_dir *a, t_dir *b, int flags)
+t_dir				*s_merge(t_dir *a, t_dir *b, int flags)
 {
-	t_dir *result;
+	t_dir			*result;
 
 	result = NULL;
 	if (a == NULL)
@@ -110,10 +110,10 @@ t_dir		*s_merge(t_dir *a, t_dir *b, int flags)
 	return (result);
 }
 
-void		fb_split(t_dir *src, t_dir **front, t_dir **back)
+void				fb_split(t_dir *src, t_dir **front, t_dir **back)
 {
-	t_dir *fast;
-	t_dir *slow;
+	t_dir			*fast;
+	t_dir			*slow;
 
 	slow = src;
 	fast = src->next;

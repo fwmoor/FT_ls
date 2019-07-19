@@ -6,15 +6,15 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/17 11:22:48 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 14:30:01 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	print_block(t_dir *ptr, int flags)
+void				print_block(t_dir *ptr, int flags)
 {
-	int i;
+	int				i;
 
 	i = 0;
 	ft_printf("total ");
@@ -28,11 +28,11 @@ void	print_block(t_dir *ptr, int flags)
 	ft_printf("%d\n", i);
 }
 
-void	print_link(t_dir *lst, char *path)
+void				print_link(t_dir *lst, char *path)
 {
-	char		buffer[1025];
-	char		*tpath;
-	char		*tmp;
+	char			buffer[1025];
+	char			*tpath;
+	char			*tmp;
 
 	ft_bzero(&buffer, 1025);
 	tmp = ft_strjoin(path, "/");
@@ -43,12 +43,12 @@ void	print_link(t_dir *lst, char *path)
 	ft_strdel(&tpath);
 }
 
-void	print_long(t_dir *list, int flags, char *path)
+void				print_long(t_dir *list, int flags, char *path)
 {
-	t_dir *ptr;
-	t_dir *ptr2;
-	t_dir *ptr3;
-	t_dir *ptr4;
+	t_dir			*ptr;
+	t_dir			*ptr2;
+	t_dir			*ptr3;
+	t_dir			*ptr4;
 
 	ptr = list;
 	ptr2 = list;
@@ -68,9 +68,9 @@ void	print_long(t_dir *list, int flags, char *path)
 	}
 }
 
-void	print_normal(t_dir *list, int flags)
+void				print_normal(t_dir *list, int flags)
 {
-	t_dir *ptr;
+	t_dir			*ptr;
 
 	ptr = list;
 	while (ptr != NULL)
@@ -89,7 +89,7 @@ void	print_normal(t_dir *list, int flags)
 	}
 }
 
-void	print_output(t_dir *list, int flags, char *path)
+void				print_output(t_dir *list, int flags, char *path)
 {
 	if (flags & LONG)
 		print_long(list, flags, path);
