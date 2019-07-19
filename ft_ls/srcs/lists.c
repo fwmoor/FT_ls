@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 18:54:35 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/19 11:35:01 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_dir			*set_list(struct dirent *de, char *path)
 	new->type = de->d_type;
 	new->mode = sb.st_mode;
 	new->mtime = sb.st_mtime;
+	new->ntime = sb.st_mtimespec.tv_nsec;
 	new->block = sb.st_blocks;
 	new->next = NULL;
 	free(tmp);

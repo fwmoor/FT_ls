@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:21 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/12 10:33:21 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 11:42:57 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,18 @@ t_dir		*merge_time(t_dir *a, t_dir *b, int flag)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (a->mtime > b->mtime && !(flag & 8))
+	if (a->mtime > b->mtime && !(flag & REVE))
 	{
 		result = a;
 		result->next = merge_time(a->next, b, flag);
 	}
-	else if (a->mtime < b->mtime && flag & 8)
+	else if (a->mtime < b->mtime && flag & REVE)
 	{
 		result = a;
 		result->next = merge_time(a->next, b, flag);
 	}
+	else if (a->mtime == b->mtime)
+		check_nano(flag, a, b, &result);
 	else
 	{
 		result = b;

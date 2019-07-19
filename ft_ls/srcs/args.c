@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 09:52:08 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:25:14 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int		check_arg(int ac, int flags, char **args)
 		if (ac > 2)
 			ft_printf("./%s:\n", args[i]);
 		ft_ls(args[i++], flags);
-		if (i + 1 != ac)
+		if (i + 1 < ac)
 			ft_printf("\n");
 		check = 1;
 	}
 	return (check);
 }
 
-void    add_args(char **args, int ac, char **av)
+int    add_args(char **args, int ac, char **av)
 {
     int i;
     int j;
@@ -74,4 +74,5 @@ void    add_args(char **args, int ac, char **av)
         args[j++] = av[i++];
     args[j] = NULL;
     sort_args(args);
+    return (j);
 }

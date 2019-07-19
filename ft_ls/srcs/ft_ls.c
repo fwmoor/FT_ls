@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 09:49:10 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/19 10:19:52 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,19 @@ void	ft_ls(char *path, int flags)
 int		main(int ac, char **av)
 {
 	int				flags;
+	int				num_args;
 	int				check;
 	char			*args[ac];
 
 	check = 0;
+	num_args = 0;
 	flags = get_flags(ac, av);
 	if (ac == 1)
 		ft_ls(".", flags);
 	else
 	{
-		add_args(args, ac, av);
-		check = check_arg(ac, flags, args);
+		num_args = add_args(args, ac, av);
+		check = check_arg(num_args, flags, args);
 		if (check == 0 && !(flags & 512))
 			ft_ls(".", flags);
 	}
