@@ -80,21 +80,3 @@ int				add_args(char **args, int ac, char **av)
 	sort_args(args);
 	return (j);
 }
-
-char		acl_print(char *path)
-{
-	int		xattrs;
-	acl_t	acl;
-
-	xattrs = (int)listxattr(path, NULL, 1, XATTR_NOFOLLOW);
-	if (xattrs > 0)
-		return ('@');
-	else
-	{
-		acl = acl_get_file(path, ACL_TYPE_EXTENDED);
-		if (acl != NULL)
-			return ('+');
-		else
-			return (' ');
-	}
-}
