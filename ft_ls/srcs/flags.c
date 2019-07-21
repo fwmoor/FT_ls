@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:56 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 12:31:28 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/21 21:25:19 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			illegal_flags(char flag)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", flag);
-	ft_printf("usage: ./ft_ls [-ARaflrt1] [file ...]\n");
+	ft_printf("usage: ./ft_ls [-AGRaflnrt1] [file ...]\n");
 	exit(1);
 }
 

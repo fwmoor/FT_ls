@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/18 19:47:42 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/21 15:11:58 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	err_han2(char *path)
 
 void	err_han3(char *path)
 {
-	ft_printf("ft_ls: ");
+	ft_putstr("ft_ls: ");
 	if (path[ft_strlen(path) - 1] != '/')
-		ft_printf("%s", path);
+		ft_putstr(path);
 	ft_printf(": Permission denied\n");
 }
 
@@ -30,7 +30,7 @@ int		err_han(char *path, DIR *dp, int ierrno, int flag)
 {
 	if (ierrno == 20)
 	{
-		ft_printf("%s", path);
+		ft_putstr(path);
 		return (1);
 	}
 	else if (!dp)

@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 12:35:24 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/21 15:13:55 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void				add_colo(t_dir *lst, int flags)
 	if (flags & COLO)
 	{
 		if (S_ISLNK(lst->mode))
-			ft_printf("\033[0;35");
+			ft_putstr("\033[0;35");
 		else if (S_ISDIR(lst->mode))
-			ft_printf("\033[0;34m");
+			ft_putstr("\033[0;34m");
 		else if (lst->mode & S_IXOTH)
-			ft_printf("\033[0;31m");
+			ft_putstr("\033[0;31m");
 		ft_printf("%s\n\033[0m", lst->name);
 	}
 	else
@@ -30,6 +30,7 @@ void				add_colo(t_dir *lst, int flags)
 
 void				recursion(t_dir *list, int flags, char *path)
 {
+	int				size;
 	t_dir			*ptr;
 	char			*s1;
 	char			*s2;
@@ -46,7 +47,8 @@ void				recursion(t_dir *list, int flags, char *path)
 					ptr = ptr->next;
 					continue ;
 				}
-				s1 = ft_strjoin("/", ptr->name);
+				size = ft_strlen(path);
+				s1 = ft_strjoin(path[size - 1] != '/' ? "/" : "", ptr->name);
 				s2 = ft_strjoin(path, s1);
 				free(s1);
 				ft_ls(s2, flags);

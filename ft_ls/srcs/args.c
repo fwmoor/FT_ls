@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 13:26:37 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/21 15:11:14 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int				check_arg(int ac, int flags, char **args)
 		if (ac > 2)
 		{
 			if (args[i][0] != '/')
-				ft_printf("./");
+				ft_putstr("./");
 			ft_printf("%s:\n", args[i]);
 		}
 		ft_ls(args[i++], flags);
 		if (i + 1 < ac)
-			ft_printf("\n");
+			ft_putchar('\n');
 		check = 1;
 	}
 	return (check);
@@ -81,17 +81,20 @@ int				add_args(char **args, int ac, char **av)
 	return (j);
 }
 
-/*char			acl_print(t_dir *lst)
+char		acl_print(char *path)
 {
-	acl_t 		temp;
-	char		buf[101];
+	int		xattrs;
+	acl_t	acl;
 
-	if (listxattr(lst->path, buf, sizeof(buf), XATTR_NOFOLLOW) > 0)
+	xattrs = (int)listxattr(path, NULL, 1, XATTR_NOFOLLOW);
+	if (xattrs > 0)
 		return ('@');
-	if ((temp = acl_get_link_np(lst->path, ACL_TYPE_EXTENDED)))
+	else
 	{
-		acl_free(temp);
-		return ('+');
+		acl = acl_get_file(path, ACL_TYPE_EXTENDED);
+		if (acl != NULL)
+			return ('+');
+		else
+			return (' ');
 	}
-	return (' ');
-} */
+}

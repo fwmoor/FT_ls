@@ -6,27 +6,11 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 13:08:53 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/21 15:03:39 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
-
-void				print_block(t_dir *ptr, int flags)
-{
-	int				i;
-
-	i = 0;
-	ft_printf("total ");
-	while (ptr)
-	{
-		if ((flags & ALL && ft_strncmp(ptr->name, ".", 1) == 0) ||
-			ft_strncmp(ptr->name, ".", 1) != 0)
-			i += ptr->block;
-		ptr = ptr->next;
-	}
-	ft_printf("%d\n", i);
-}
 
 void				print_link(t_dir *lst, char *path)
 {
