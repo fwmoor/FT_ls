@@ -56,3 +56,17 @@ void		display_l(t_dir *lst, char *path, int flags)
 	if (S_ISLNK(lst->mode))
 		print_link(lst, path);
 }
+
+char		acl_print(char *path)
+{
+	acl_t	acl;
+
+	if ((listxattr(path, 0, 0, XATTR_NOFOLLOW) > 0))
+		return ('@');
+	else if (!(acl = acl_get_file(path, ACL_TYPE_EXTENDED)))
+	{
+		free(acl);
+		return ('+');
+	}
+	return (' ');
+}
