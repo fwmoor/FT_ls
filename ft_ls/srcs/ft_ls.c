@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/ft_ls.h"
 
 void				recursion(t_dir *list, int flags, char *path)
