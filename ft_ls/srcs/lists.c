@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 16:10:05 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/21 13:26:20 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-t_dir				*set_list(struct dirent *de, char *path)
+t_dir				*set_list(struct dirent *de, char *path, int flags)
 {
 	t_dir			*new;
 	struct stat		sb;
@@ -26,8 +26,8 @@ t_dir				*set_list(struct dirent *de, char *path)
 	lstat(path2, &sb);
 	new->name = ft_strdup(de->d_name);
 	new->nlink = sb.st_nlink;
-	new->uid = convert_un(sb.st_uid);
-	new->gid = convert_gn(sb.st_gid);
+	new->uid = convert_un(sb.st_uid, flags);
+	new->gid = convert_gn(sb.st_gid, flags);
 	new->size = sb.st_size;
 	new->type = de->d_type;
 	new->mode = sb.st_mode;
@@ -90,11 +90,11 @@ void				delete_list(t_dir **list)
 	*list = NULL;
 }
 
-void				list_add(t_dir **alst, struct dirent *de, char *path)
+void				list_add(t_dir **alst, struct dirent *de, char *path, int f)
 {
 	t_dir			*new;
 
-	new = set_list(de, path);
+	new = set_list(de, path, f);
 	new->next = *alst;
 	*alst = new;
 }

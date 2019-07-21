@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 16:06:42 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/21 13:26:37 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,18 @@ int				add_args(char **args, int ac, char **av)
 	sort_args(args);
 	return (j);
 }
+
+/*char			acl_print(t_dir *lst)
+{
+	acl_t 		temp;
+	char		buf[101];
+
+	if (listxattr(lst->path, buf, sizeof(buf), XATTR_NOFOLLOW) > 0)
+		return ('@');
+	if ((temp = acl_get_link_np(lst->path, ACL_TYPE_EXTENDED)))
+	{
+		acl_free(temp);
+		return ('+');
+	}
+	return (' ');
+} */

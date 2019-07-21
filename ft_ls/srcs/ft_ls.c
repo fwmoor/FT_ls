@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/19 14:28:42 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/21 12:35:24 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+void				add_colo(t_dir *lst, int flags)
+{
+	if (flags & COLO)
+	{
+		if (S_ISLNK(lst->mode))
+			ft_printf("\033[0;35");
+		else if (S_ISDIR(lst->mode))
+			ft_printf("\033[0;34m");
+		else if (lst->mode & S_IXOTH)
+			ft_printf("\033[0;31m");
+		ft_printf("%s\n\033[0m", lst->name);
+	}
+	else
+		ft_printf("%s\n", lst->name);
+}
 
 void				recursion(t_dir *list, int flags, char *path)
 {
@@ -54,9 +70,9 @@ void				ft_ls(char *path, int flags)
 	while ((de = readdir(dr)))
 	{
 		if (!initial)
-			initial = set_list(de, path);
+			initial = set_list(de, path, flags);
 		else
-			list_add(&initial, de, path);
+			list_add(&initial, de, path, flags);
 	}
 	closedir(dr);
 	merge_s(&initial, flags);
@@ -81,7 +97,7 @@ int					main(int ac, char **av)
 	{
 		num_args = add_args(args, ac, av);
 		check = check_arg(num_args, flags, args);
-		if (check == 0 && !(flags & 512))
+		if (check == 0)
 			ft_ls(".", flags);
 	}
 	return (1);
