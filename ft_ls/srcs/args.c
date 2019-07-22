@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 14:54:05 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 15:37:04 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void			sort_args(char **args)
 	i = 0;
 	while ((args[i] != NULL) && (args[i + 1] != NULL))
 	{
-		if (ft_strcmp(args[i], args[i + 1]) < 0 ||
-				ft_strcmp(args[i], args[i + 1]) == 0)
+		if (ft_strcmp(args[i], args[i + 1]) <= 0)
 			i++;
 		else
 		{
@@ -52,17 +51,30 @@ int				check_arg(int ac, int flags, char **args)
 {
 	int			i;
 	int			check;
+	int			tru;
 
-	i = 0;
+	i = -1;
 	check = 0;
-	while (args[i] != NULL)
+	tru = 0;
+	while (args[++i] != NULL)
+		if (!(isdir(args[i])))
+		{
+			ft_ls(args[i], flags);
+			tru = 1;
+		}
+	if (tru == 1)
+		ft_putchar('\n');
+	i = -1;
+	while (args[++i] != NULL)
 	{
-		if (ac > 1 && isdir(args[i]))
-			ft_printf("%s:\n", args[i]);
-		ft_ls(args[i], flags);
-		if (i < ac && isdir(args[i]))
-			ft_putchar('\n');
-		i++;
+		if (isdir(args[i]))
+		{
+			if (ac > 1)
+				ft_printf("%s:\n", args[i]);
+			ft_ls(args[i], flags);
+			if (i + 1 < ac)
+				ft_putchar('\n');
+		}
 		check = 1;
 	}
 	return (check);
