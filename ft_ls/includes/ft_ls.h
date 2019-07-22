@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/22 14:05:23 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 18:26:15 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int					err_han(char *path, DIR *dp, int ierrno, int flag);
 char				acl_print(t_dir *lst);
 char				*convert_un(int uid, int flags);
 char				*convert_gn(int gib, int flags);
-int					add_args(char **args, int ac, char **av);
+int					add_args(char **args, int ac, char **av, int flags);
 void				print_block(t_dir *ptr, int flags);
 void				add_colo(t_dir *lst, int flags);
 void				display_l(t_dir *lst, char *path, int flags);
