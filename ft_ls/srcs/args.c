@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 19:20:38 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 19:31:09 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				check_arg(int ac, int flags, char **args)
 		ft_ls(args[i], flags);
 		check = 1;
 		i++;
-		if (i + 1 < ac)
+		if (i + 1 < ac - 1)
 			ft_putchar('\n');
 	}
 	return (check);
@@ -96,5 +96,6 @@ int				add_args(char **args, int ac, char **av, int flags)
 		i++;
 	}
 	args[j] = NULL;
-	return (sort_args(args));
+	sort_args(args);
+	return (i);
 }

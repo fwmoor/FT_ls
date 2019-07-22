@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 18:51:54 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 19:26:03 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int					main(int ac, char **av)
 	else
 	{
 		num_args = add_args(args, ac, av, flags);
-		check = check_arg(ac, flags, args);
+		check = check_arg(num_args, flags, args);
 		if (check == 0)
 		 	ft_ls(".", flags);
 	}
