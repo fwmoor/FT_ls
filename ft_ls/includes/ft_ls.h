@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/21 15:06:57 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 09:44:01 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@
 # define TIM 16
 # define DOT 32
 # define NOSOR 64
-# define ONE 128
+# define PUT 128
 # define COLO 256
 # define NORM 512
 # define UGNOM 1024
-# define ERROR 2048
+# define ONE 2048
+# define ERROR 4096
 
 typedef struct		s_dir
 {
@@ -57,13 +58,14 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
+int					islink(const char *path);
 int					long_size(t_dir *nodes, int flags);
 int					check_arg(int ac, int flags, char **args);
 int					long_nlink(t_dir *nodes, int flags);
 int					get_flags(int ac, char **av);
 int					ft_printf(const char *format, ...);
 int					err_han(char *path, DIR *dp, int ierrno, int flag);
-char				acl_print(char *path);
+char				acl_print(t_dir *lst);
 char				*convert_un(int uid, int flags);
 char				*convert_gn(int gib, int flags);
 int					add_args(char **args, int ac, char **av);
@@ -82,7 +84,7 @@ void				recursion(t_dir *list, int flags, char *path);
 void				check_nano(int flags, t_dir *a, t_dir *b, t_dir **result);
 void				fb_split(t_dir *src, t_dir **front, t_dir **back);
 void				basic_print(struct dirent *de, int flags, DIR *dr);
-void				list_add(t_dir **alst, struct dirent *de, char *path, int f);
+void				list_add(t_dir **ls, struct dirent *de, char *path, int f);
 void				recursive_print(struct dirent *de, int flags, char *path);
 t_dir				*s_merge(t_dir *a, t_dir *b, int flags);
 t_dir				*merge_time(t_dir *a, t_dir *b, int flag);

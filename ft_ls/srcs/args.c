@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 15:11:14 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 09:47:08 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+int				islink(const char *path)
+{
+	struct stat	s;
+
+	lstat(path, &s);
+	return (S_ISLNK(s.st_mode));
+}
 
 void			sort_args(char **args)
 {

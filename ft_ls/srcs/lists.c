@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 14:45:10 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 09:43:45 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_dir				*set_list(struct dirent *de, char *path, int flags)
 		return (NULL);
 	tmp = ft_strjoin(path, path[ft_strlen(path) - 1] != '/' ? "/" : "");
 	path2 = ft_strjoin(tmp, de->d_name);
-	new->path = path2;
-	lstat(path2, &sb);
+	new->path = ft_strdup(path2);
+	islink(path2) ? lstat(path2, &sb) : stat(path2, &sb);
 	new->name = ft_strdup(de->d_name);
 	new->nlink = sb.st_nlink;
 	new->uid = convert_un(sb.st_uid, flags);

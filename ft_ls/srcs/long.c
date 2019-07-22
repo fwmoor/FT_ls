@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   long.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/22 08:44:38 by fremoor           #+#    #+#             */
+/*   Updated: 2019/07/22 09:16:52 by fremoor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/ft_ls.h"
 
-char		display_type(t_dir *lst)
+char				display_type(t_dir *lst)
 {
 	if (S_ISREG(lst->mode))
 		return ('-');
@@ -35,7 +47,7 @@ void				print_block(t_dir *ptr, int flags)
 	ft_printf("%d\n", i);
 }
 
-void		display_l(t_dir *lst, char *path, int flags)
+void				display_l(t_dir *lst, char *path, int flags)
 {
 	ft_putchar(display_type(lst));
 	ft_putchar((lst->mode & S_IRUSR) ? 'r' : '-');
@@ -47,7 +59,7 @@ void		display_l(t_dir *lst, char *path, int flags)
 	ft_putchar((lst->mode & S_IROTH) ? 'r' : '-');
 	ft_putchar((lst->mode & S_IWOTH) ? 'w' : '-');
 	ft_putchar((lst->mode & S_IXOTH) ? 'x' : '-');
-	ft_putchar(acl_print(path));
+	ft_putchar(acl_print(lst));
 	ft_printf("%*d ", lst->max + 1, lst->nlink);
 	ft_printf("%s  %s", lst->uid, lst->gid);
 	ft_printf("%*d ", lst->maxs + 2, lst->size);
@@ -57,13 +69,13 @@ void		display_l(t_dir *lst, char *path, int flags)
 		print_link(lst, path);
 }
 
-char		acl_print(char *path)
+char				acl_print(t_dir *lst)
 {
-	acl_t	acl;
+	acl_t			acl;
 
-	if ((listxattr(path, 0, 0, XATTR_NOFOLLOW) > 0))
+	if ((listxattr(lst->path, 0, 0, XATTR_NOFOLLOW) > 0))
 		return ('@');
-	else if (!(acl = acl_get_file(path, ACL_TYPE_EXTENDED)))
+	if ((acl = acl_get_link_np(lst->path, ACL_TYPE_EXTENDED)))
 	{
 		free(acl);
 		return ('+');

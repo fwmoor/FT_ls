@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:56 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 21:25:19 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 09:02:14 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			illegal_flags(char flag)
 {
 	ft_printf("ft_ls: illegal option -- %c\n", flag);
-	ft_printf("usage: ./ft_ls [-AGRaflnrt1] [file ...]\n");
+	ft_printf("usage: ./ft_ls [-AGRaflnprt1] [file ...]\n");
 	exit(1);
 }
 
@@ -33,14 +33,16 @@ int				check_flags(char c)
 		return (TIM);
 	if (c == 'f')
 		return (NOSOR);
-	if (c == '1')
-		return (ONE);
+	if (c == 'p')
+		return (PUT);
 	if (c == 'G')
 		return (COLO);
 	if (c == 'A')
 		return (NORM);
 	if (c == 'n')
 		return (UGNOM);
+	if (c == '1')
+		return (ONE);
 	return (ERROR);
 }
 

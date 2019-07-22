@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 15:03:39 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 09:43:51 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void				print_link(t_dir *lst, char *path)
 	tpath = ft_strjoin(tmp, lst->name);
 	ft_strdel(&tmp);
 	readlink(tpath, buffer, 1024);
-	ft_printf(" -> %s", buffer);
+	ft_printf(" -> %s\n", buffer);
 	ft_strdel(&tpath);
 }
 
@@ -62,6 +62,14 @@ void				print_normal(t_dir *list, int flags)
 		if (flags & ALL || flags & NOSOR)
 		{
 			add_colo(ptr, flags);
+			ptr = ptr->next;
+		}
+		else if (flags & NORM)
+		{
+			if (!(ptr->name[0] == '.' && ft_strlen(ptr->name) == 1) &&
+			!(ptr->name[0] == '.' && ptr->name[1] == '.' &&
+			ft_strlen(ptr->name) == 2))
+				add_colo(ptr, flags);
 			ptr = ptr->next;
 		}
 		else
