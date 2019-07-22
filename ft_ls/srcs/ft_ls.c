@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 14:20:50 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 18:51:54 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void				ft_ls(char *path, int flags)
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
-	if (err_han(path, dr, errno, flags) == 1)
-		return ;
 	while ((de = readdir(dr)))
 	{
 		if (!initial)
@@ -106,10 +104,10 @@ int					main(int ac, char **av)
 		ft_ls(".", flags);
 	else
 	{
-		num_args = add_args(args, ac, av);
-		check = check_arg(num_args, flags, args);
+		num_args = add_args(args, ac, av, flags);
+		check = check_arg(ac, flags, args);
 		if (check == 0)
-			ft_ls(".", flags);
+		 	ft_ls(".", flags);
 	}
 	return (1);
 }

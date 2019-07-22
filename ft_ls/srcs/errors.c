@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 15:31:17 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 18:54:22 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	err_han3(char *path)
 
 int		err_han(char *path, DIR *dp, int ierrno, int flag)
 {
-	(void)flag;
 	if (!dp)
 	{
 		if (ierrno == 20)

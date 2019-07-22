@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 15:37:04 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 18:52:38 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,27 @@ int				check_arg(int ac, int flags, char **args)
 {
 	int			i;
 	int			check;
-	int			tru;
 
-	i = -1;
+	i = 0;
 	check = 0;
-	tru = 0;
-	while (args[++i] != NULL)
-		if (!(isdir(args[i])))
-		{
-			ft_ls(args[i], flags);
-			tru = 1;
-		}
-	if (tru == 1)
-		ft_putchar('\n');
-	i = -1;
-	while (args[++i] != NULL)
+	while (args[i] != NULL)
 	{
-		if (isdir(args[i]))
-		{
-			if (ac > 1)
-				ft_printf("%s:\n", args[i]);
-			ft_ls(args[i], flags);
-			if (i + 1 < ac)
-				ft_putchar('\n');
-		}
+		if (ac > 2)
+			ft_printf("%s:\n", args[i]);
+		ft_ls(args[i], flags);
+		if (i < ac)
+			ft_putchar('\n');
 		check = 1;
+		i++;
 	}
 	return (check);
 }
 
-int				add_args(char **args, int ac, char **av)
+int				add_args(char **args, int ac, char **av, int flags)
 {
 	int			i;
 	int			j;
+	DIR			*dr;
 
 	i = 1;
 	j = 0;
@@ -100,7 +88,12 @@ int				add_args(char **args, int ac, char **av)
 			break;
 	}
 	while (i < ac)
-		args[j++] = av[i++];
+	{
+		dr = opendir(av[i]);
+		if (err_han(av[i], dr, errno, flags) != 1)
+			args[j++] = av[i];
+		i++;
+	}
 	args[j] = NULL;
 	sort_args(args);
 	return (j);
