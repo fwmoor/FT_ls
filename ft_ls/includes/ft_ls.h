@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/22 09:44:01 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:05:23 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_dir
 	struct s_dir	*next;
 }					t_dir;
 
+int					isdir(const char *path);
 int					islink(const char *path);
 int					long_size(t_dir *nodes, int flags);
 int					check_arg(int ac, int flags, char **args);

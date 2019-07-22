@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 09:47:08 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:54:05 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ int				islink(const char *path)
 
 	lstat(path, &s);
 	return (S_ISLNK(s.st_mode));
+}
+
+int				isdir(const char *path)
+{
+	struct stat	s;
+
+	stat(path, &s);
+	return (S_ISDIR(s.st_mode));
 }
 
 void			sort_args(char **args)
@@ -49,15 +57,12 @@ int				check_arg(int ac, int flags, char **args)
 	check = 0;
 	while (args[i] != NULL)
 	{
-		if (ac > 2)
-		{
-			if (args[i][0] != '/')
-				ft_putstr("./");
+		if (ac > 1 && isdir(args[i]))
 			ft_printf("%s:\n", args[i]);
-		}
-		ft_ls(args[i++], flags);
-		if (i + 1 < ac)
+		ft_ls(args[i], flags);
+		if (i < ac && isdir(args[i]))
 			ft_putchar('\n');
+		i++;
 		check = 1;
 	}
 	return (check);
@@ -80,7 +85,7 @@ int				add_args(char **args, int ac, char **av)
 			break ;
 		}
 		else
-			break ;
+			break;
 	}
 	while (i < ac)
 		args[j++] = av[i++];

@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 09:43:45 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/22 14:02:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_dir				*set_list(struct dirent *de, char *path, int flags)
 
 	if (!(new = (t_dir *)malloc(sizeof(*new))))
 		return (NULL);
-	tmp = ft_strjoin(path, path[ft_strlen(path) - 1] != '/' ? "/" : "");
+	tmp = ft_strjoin(path, "/");
 	path2 = ft_strjoin(tmp, de->d_name);
 	new->path = ft_strdup(path2);
 	islink(path2) ? lstat(path2, &sb) : stat(path2, &sb);

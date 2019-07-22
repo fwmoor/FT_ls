@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/21 15:11:58 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 14:48:42 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ void	err_han3(char *path)
 
 int		err_han(char *path, DIR *dp, int ierrno, int flag)
 {
-	if (ierrno == 20)
+	if (!dp)
 	{
-		ft_putstr(path);
-		return (1);
-	}
-	else if (!dp)
-	{
-		if (ierrno == 13)
+		if (ierrno == 20)
+		{
+			ft_putendl(path);
+			return (1);
+		}
+		else if (ierrno == 13)
 		{
 			err_han3(path);
 			return (1);
 		}
+		else if (flag & RECUR)
+			err_han2(path);
 		ft_printf("ft_ls: %s: No such file or directory\n", path);
 		return (1);
 	}
-	if (flag & RECUR)
-		err_han2(path);
 	return (0);
 }
