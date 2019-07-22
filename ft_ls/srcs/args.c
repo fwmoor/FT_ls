@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 18:52:38 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/22 19:20:38 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				isdir(const char *path)
 	return (S_ISDIR(s.st_mode));
 }
 
-void			sort_args(char **args)
+int			sort_args(char **args)
 {
 	int			i;
 	char		*temp;
@@ -45,6 +45,7 @@ void			sort_args(char **args)
 			args[i + 1] = temp;
 		}
 	}
+	return (i);
 }
 
 int				check_arg(int ac, int flags, char **args)
@@ -56,13 +57,13 @@ int				check_arg(int ac, int flags, char **args)
 	check = 0;
 	while (args[i] != NULL)
 	{
-		if (ac > 2)
+		if ((ac > 2 && !(flags & LONG)) || (flags & LONG && ac > 3))
 			ft_printf("%s:\n", args[i]);
 		ft_ls(args[i], flags);
-		if (i < ac)
-			ft_putchar('\n');
 		check = 1;
 		i++;
+		if (i + 1 < ac)
+			ft_putchar('\n');
 	}
 	return (check);
 }
@@ -95,6 +96,5 @@ int				add_args(char **args, int ac, char **av, int flags)
 		i++;
 	}
 	args[j] = NULL;
-	sort_args(args);
-	return (j);
+	return (sort_args(args));
 }
