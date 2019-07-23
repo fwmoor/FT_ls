@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 08:44:38 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:34:57 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:29:38 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,17 @@ void				display_perms(t_dir *lst)
 void				print_block(t_dir *ptr, int flags)
 {
 	int				i;
+	t_dir			*temp;
 
 	i = 0;
+	temp = ptr;
 	ft_printf("total ");
-	while (ptr)
+	while (temp)
 	{
-		if ((flags & ALL && ft_strncmp(ptr->name, ".", 1) == 0) ||
-			ft_strncmp(ptr->name, ".", 1) != 0)
-			i += ptr->block;
-		ptr = ptr->next;
+		if ((flags & ALL && ft_strncmp(temp->name, ".", 1) == 0) ||
+			ft_strncmp(temp->name, ".", 1) != 0)
+			i += temp->block;
+		temp = temp->next;
 	}
 	ft_printf("%d\n", i);
 }
@@ -75,7 +77,7 @@ void				display_l(t_dir *lst, char *path, int flags)
 	display_perms(lst);
 	ft_putchar(acl_print(lst));
 	ft_printf("%*d ", lst->max + 1, lst->nlink);
-	ft_printf("%s  %s", lst->uid, lst->gid);
+	ft_printf("%-*s  %-*s", lst->maxu, lst->uid, lst->maxg, lst->gid);
 	ft_printf("%*d ", lst->maxs + 2, lst->size);
 	convert_date(ctime(&lst->mtime));
 	add_colo(lst, flags);

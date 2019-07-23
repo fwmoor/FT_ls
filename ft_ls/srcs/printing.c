@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:45:36 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:28:15 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ void				print_long(t_dir *list, int flags, char *path)
 {
 	t_dir			*ptr;
 	t_dir			*ptr2;
-	t_dir			*ptr3;
-	t_dir			*ptr4;
 
 	ptr = list;
 	ptr2 = list;
-	ptr3 = list;
-	ptr4 = list;
 	if (flags & LONG || flags & UGNOM)
 		print_block(ptr2, flags);
 	while (ptr != NULL)
 	{
-		long_nlink(ptr, flags);
+		ptr->max = long_nlink(ptr2, flags);
+		ptr->maxs = long_size(ptr2, flags);
+		ptr->maxg = long_gmax(ptr2, flags);
+		ptr->maxu = long_umax(ptr2, flags);
 		if (flags & ALL)
 			display_l(ptr, path, flags);
 		else if (!(ptr->name[0] == '.' && ft_strlen(ptr->name) == 1) &&

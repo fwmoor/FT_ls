@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:46:13 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:24:50 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,6 @@ t_dir				*set_list(struct dirent *de, char *path, int flags)
 	free(tmp);
 	free(path2);
 	return (new);
-}
-
-void				long_nlink(t_dir *nodes, int flags)
-{
-	int				i;
-	int				j;
-
-	i = 0;
-	j = 0;
-	while (nodes)
-	{
-		if ((flags & ALL && ft_strncmp((nodes)->name, ".", 1) == 0) ||
-			ft_strncmp((nodes)->name, ".", 1) != 0)
-			{
-				if (ft_num_len((nodes)->nlink, 10) > i)
-					i = ft_num_len((nodes)->nlink, 10);
-				if (ft_num_len((nodes)->size, 10) > j)
-					j = ft_num_len((nodes)->size, 10);
-			}
-		(nodes) = (nodes)->next;
-	}
-	(nodes)->max = i;
-	(nodes)->maxs = j;
-}
-
-int					long_size(t_dir *nodes, int flags)
-{
-	int				i;
-
-	i = 0;
-	while (nodes)
-	{
-		if ((flags & ALL && ft_strncmp(nodes->name, ".", 1) == 0) ||
-			ft_strncmp(nodes->name, ".", 1) != 0)
-			if (ft_num_len(nodes->size, 10) >= i)
-				i = ft_num_len(nodes->size, 10);
-		nodes = nodes->next;
-	}
-	return (i);
 }
 
 void				delete_list(t_dir **list)

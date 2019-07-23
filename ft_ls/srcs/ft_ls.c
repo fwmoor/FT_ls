@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 09:17:17 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 12:32:28 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void				add_colo(t_dir *lst, int flags)
 	if (flags & COLO)
 	{
 		if (S_ISLNK(lst->mode))
-			ft_putstr("\033[0;35");
+			ft_putstr("\033[0;35m");
 		else if (S_ISDIR(lst->mode))
 			ft_putstr("\033[0;34m");
 		else if (lst->mode & S_IXOTH)

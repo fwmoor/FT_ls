@@ -7,7 +7,7 @@ INCS = ./includes/ft_ls.h
 
 SRCS =	./srcs/flags.c ./srcs/ft_ls.c ./srcs/errors.c ./srcs/lists.c \
 		./srcs/convert.c ./srcs/sort.c ./srcs/printing.c ./srcs/args.c \
-		./srcs/long.c ./srcs/time.c ./srcs/extras.c
+		./srcs/long.c ./srcs/time.c ./srcs/extras.c ./srcs/maxs.c
 
 FLAGS = -Wall -Werror -Wextra
 
