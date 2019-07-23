@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 13:10:21 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 15:34:23 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void				recursion(t_dir *list, int flags, char *path)
 				"", ptr->name);
 				s2 = ft_strjoin(path, s1);
 				free(s1);
+				ft_printf("%s:\n", s2);
 				ft_ls(s2, flags);
 				free(s2);
 			}
