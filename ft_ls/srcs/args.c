@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 19:31:09 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/23 09:18:04 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				isdir(const char *path)
 	return (S_ISDIR(s.st_mode));
 }
 
-int			sort_args(char **args)
+int				sort_args(char **args, int err, int ac, int flags)
 {
 	int			i;
 	char		*temp;
@@ -45,10 +45,10 @@ int			sort_args(char **args)
 			args[i + 1] = temp;
 		}
 	}
-	return (i);
+	return(check_arg(ac, flags, args, err));
 }
 
-int				check_arg(int ac, int flags, char **args)
+int				check_arg(int ac, int flags, char **args, int err)
 {
 	int			i;
 	int			check;
@@ -57,25 +57,28 @@ int				check_arg(int ac, int flags, char **args)
 	check = 0;
 	while (args[i] != NULL)
 	{
-		if ((ac > 2 && !(flags & LONG)) || (flags & LONG && ac > 3))
+		if ((ac >= 2 && !(flags & LONG)) || (flags & LONG && ac >= 2))
 			ft_printf("%s:\n", args[i]);
-		ft_ls(args[i], flags);
+		if (args[i][0] != '-')
+			ft_ls(args[i], flags);
 		check = 1;
 		i++;
-		if (i + 1 < ac - 1)
+		if (i < ac)
 			ft_putchar('\n');
 	}
-	return (check);
+	return (err > 0) ? 1 : (check);
 }
 
 int				add_args(char **args, int ac, char **av, int flags)
 {
 	int			i;
 	int			j;
+	int			err;
 	DIR			*dr;
 
 	i = 1;
 	j = 0;
+	err = 0;
 	while (i < ac)
 	{
 		if ((av[i][0] == '-') && (ft_strlen(av[i]) > 1) && (av[i][1] != '-'))
@@ -93,9 +96,10 @@ int				add_args(char **args, int ac, char **av, int flags)
 		dr = opendir(av[i]);
 		if (err_han(av[i], dr, errno, flags) != 1)
 			args[j++] = av[i];
+		else
+			err++;
 		i++;
 	}
 	args[j] = NULL;
-	sort_args(args);
-	return (i);
+	return (sort_args(args, err, j, flags));
 }

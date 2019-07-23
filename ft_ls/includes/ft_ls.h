@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/22 18:26:15 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/23 09:18:24 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct		s_dir
 int					isdir(const char *path);
 int					islink(const char *path);
 int					long_size(t_dir *nodes, int flags);
-int					check_arg(int ac, int flags, char **args);
+int					check_arg(int ac, int flags, char **args, int err);
 int					long_nlink(t_dir *nodes, int flags);
 int					get_flags(int ac, char **av);
 int					ft_printf(const char *format, ...);

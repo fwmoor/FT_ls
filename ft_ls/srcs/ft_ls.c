@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 19:26:03 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/23 09:17:17 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,9 @@ int					main(int ac, char **av)
 		ft_ls(".", flags);
 	else
 	{
-		num_args = add_args(args, ac, av, flags);
-		check = check_arg(num_args, flags, args);
+		check = add_args(args, ac, av, flags);
 		if (check == 0)
-		 	ft_ls(".", flags);
+			ft_ls(".", flags);
 	}
 	return (1);
 }
