@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 19:06:51 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/23 08:47:44 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void				print_long(t_dir *list, int flags, char *path)
 	ptr2 = list;
 	ptr3 = list;
 	ptr4 = list;
-	if (flags & LONG)
+	if (flags & LONG || flags & UGNOM)
 		print_block(ptr2, flags);
 	while (ptr != NULL)
 	{
@@ -87,7 +87,7 @@ void				print_normal(t_dir *list, int flags)
 
 void				print_output(t_dir *list, int flags, char *path)
 {
-	if (flags & LONG)
+	if (flags & LONG || flags & UGNOM)
 		print_long(list, flags, path);
 	else
 		print_normal(list, flags);
