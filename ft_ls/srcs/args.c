@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:28:41 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 11:19:59 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				check_arg(int ac, int flags, char **args, int err)
 
 	i = 0;
 	check = 0;
-	if (err > 0 && ac > 2)
+	if (ac - err > 1)
 		ft_putchar('\n');
 	while (args[i] != NULL)
 	{

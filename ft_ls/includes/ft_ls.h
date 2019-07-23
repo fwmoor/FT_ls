@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/23 09:18:24 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:46:21 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct		s_dir
 	int				block;
 	int				max;
 	int				maxs;
+	int				maxg;
+	int				maxu;
 	char			*name;
 	char			*uid;
 	char			*gid;
@@ -62,7 +64,7 @@ int					isdir(const char *path);
 int					islink(const char *path);
 int					long_size(t_dir *nodes, int flags);
 int					check_arg(int ac, int flags, char **args, int err);
-int					long_nlink(t_dir *nodes, int flags);
+void					long_nlink(t_dir *nodes, int flags);
 int					get_flags(int ac, char **av);
 int					ft_printf(const char *format, ...);
 int					err_han(char *path, DIR *dp, int ierrno, int flag);
