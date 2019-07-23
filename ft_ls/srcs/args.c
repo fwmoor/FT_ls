@@ -6,26 +6,27 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 09:18:04 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:05:07 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int				islink(const char *path)
+int				get_i(char **av, int ac, int i)
 {
-	struct stat	s;
-
-	lstat(path, &s);
-	return (S_ISLNK(s.st_mode));
-}
-
-int				isdir(const char *path)
-{
-	struct stat	s;
-
-	stat(path, &s);
-	return (S_ISDIR(s.st_mode));
+	while (i < ac)
+	{
+		if ((av[i][0] == '-') && (ft_strlen(av[i]) > 1) && (av[i][1] != '-'))
+			i++;
+		else if (av[i][0] == '-' && av[i][1] == '-')
+		{
+			i++;
+			break ;
+		}
+		else
+			break;
+	}
+	return (i);
 }
 
 int				sort_args(char **args, int err, int ac, int flags)
@@ -55,6 +56,8 @@ int				check_arg(int ac, int flags, char **args, int err)
 
 	i = 0;
 	check = 0;
+	if (err > 0)
+		ft_putchar('\n');
 	while (args[i] != NULL)
 	{
 		if ((ac >= 2 && !(flags & LONG)) || (flags & LONG && ac >= 2))
@@ -79,18 +82,7 @@ int				add_args(char **args, int ac, char **av, int flags)
 	i = 1;
 	j = 0;
 	err = 0;
-	while (i < ac)
-	{
-		if ((av[i][0] == '-') && (ft_strlen(av[i]) > 1) && (av[i][1] != '-'))
-			i++;
-		else if (av[i][0] == '-' && av[i][1] == '-')
-		{
-			i++;
-			break ;
-		}
-		else
-			break;
-	}
+	i = get_i(av, ac, i); 
 	while (i < ac)
 	{
 		dr = opendir(av[i]);

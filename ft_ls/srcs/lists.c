@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:13 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 14:02:06 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:07:59 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void				delete_list(t_dir **list)
 		free(current->name);
 		free(current->uid);
 		free(current->gid);
+		free(current->path);
 		free(current);
 		current = next;
 	}

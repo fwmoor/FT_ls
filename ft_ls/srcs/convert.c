@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:37 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 08:44:05 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 09:48:06 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,4 @@ void		convert_date(char *str)
 	while (i < 16)
 		ret[j++] = str[i++];
 	ft_putstr(ret);
-}
-
-void		check_nano(int flags, t_dir *a, t_dir *b, t_dir **result)
-{
-	if (a->mtime > b->mtime && !(flags & REVE))
-	{
-		*result = a;
-		(*result)->next = merge_time(a->next, b, flags);
-	}
-	else if (a->mtime < b->mtime && flags & REVE)
-	{
-		*result = a;
-		(*result)->next = merge_time(a->next, b, flags);
-	}
-	else
-	{
-		*result = b;
-		(*result)->next = merge_time(a, b->next, flags);
-	}
 }
