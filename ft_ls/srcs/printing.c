@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 08:47:44 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:18:22 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void				print_long(t_dir *list, int flags, char *path)
 		else if (!(ptr->name[0] == '.' && ft_strlen(ptr->name) == 1) &&
 			!(ptr->name[0] == '.' && ptr->name[1] == '.' &&
 			ft_strlen(ptr->name) == 2) && flags & NORM)
-				display_l(ptr, path, flags);
+			display_l(ptr, path, flags);
 		else if (ft_strncmp(ptr->name, ".", 1) != 0)
 			display_l(ptr, path, flags);
 		ptr = ptr->next;

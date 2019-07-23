@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:41:49 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 09:02:20 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:18:37 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		err_han(char *path, DIR *dp, int ierrno, int flag)
 			return (1);
 		}
 		else if (flag & RECUR)
-		 	err_han2(path);
+			err_han2(path);
 		ft_printf("ft_ls: %s: No such file or directory\n", path);
 		return (1);
 	}

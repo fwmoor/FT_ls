@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:05:07 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:15:34 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				get_i(char **av, int ac, int i)
 			break ;
 		}
 		else
-			break;
+			break ;
 	}
 	return (i);
 }
@@ -46,7 +46,7 @@ int				sort_args(char **args, int err, int ac, int flags)
 			args[i + 1] = temp;
 		}
 	}
-	return(check_arg(ac, flags, args, err));
+	return (check_arg(ac, flags, args, err));
 }
 
 int				check_arg(int ac, int flags, char **args, int err)
@@ -82,7 +82,7 @@ int				add_args(char **args, int ac, char **av, int flags)
 	i = 1;
 	j = 0;
 	err = 0;
-	i = get_i(av, ac, i); 
+	i = get_i(av, ac, i);
 	while (i < ac)
 	{
 		dr = opendir(av[i]);
