@@ -6,23 +6,23 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 10:00:15 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 13:48:26 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 13:52:05 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-int				islink(const char *path)
+int					islink(const char *path)
 {
-	struct stat	s;
+	struct stat		s;
 
 	lstat(path, &s);
 	return (S_ISLNK(s.st_mode));
 }
 
-int				isdir(const char *path)
+int					isdir(const char *path)
 {
-	struct stat	s;
+	struct stat		s;
 
 	stat(path, &s);
 	return (S_ISDIR(s.st_mode));

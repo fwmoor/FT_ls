@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 12:55:37 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 13:51:36 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int				sort_args(char **args, int err, int ac, int flags)
 			}
 		i++;
 	}
-
 	return (check_arg(ac, flags, args, err));
 }
 
