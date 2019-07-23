@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 08:44:38 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/22 09:16:52 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:34:57 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ char				display_type(t_dir *lst)
 	return ('-');
 }
 
+void				display_perms(t_dir *lst)
+{
+	ft_putchar((lst->mode & S_IRUSR) ? 'r' : '-');
+	ft_putchar((lst->mode & S_IWUSR) ? 'w' : '-');
+	if (lst->mode & S_ISUID)
+		ft_putchar((lst->mode & S_IXUSR) ? 's' : 'S');
+	else
+		ft_putchar((lst->mode & S_IXUSR) ? 'x' : '-');
+	ft_putchar((lst->mode & S_IRGRP) ? 'r' : '-');
+	ft_putchar((lst->mode & S_IWGRP) ? 'w' : '-');
+	if (lst->mode & S_ISGID)
+		ft_putchar((lst->mode & S_IXGRP) ? 's' : 'S');
+	else
+		ft_putchar((lst->mode & S_IXGRP) ? 'x' : '-');
+	ft_putchar((lst->mode & S_IROTH) ? 'r' : '-');
+	ft_putchar((lst->mode & S_IWOTH) ? 'w' : '-');
+	if (lst->mode & S_ISVTX)
+		ft_putchar((lst->mode & S_IXOTH) ? 't' : 'T');
+	else
+		ft_putchar((lst->mode & S_IXOTH) ? 'x' : '-');
+}
+
 void				print_block(t_dir *ptr, int flags)
 {
 	int				i;
@@ -50,15 +72,7 @@ void				print_block(t_dir *ptr, int flags)
 void				display_l(t_dir *lst, char *path, int flags)
 {
 	ft_putchar(display_type(lst));
-	ft_putchar((lst->mode & S_IRUSR) ? 'r' : '-');
-	ft_putchar((lst->mode & S_IWUSR) ? 'w' : '-');
-	ft_putchar((lst->mode & S_IXUSR) ? 'x' : '-');
-	ft_putchar((lst->mode & S_IRGRP) ? 'r' : '-');
-	ft_putchar((lst->mode & S_IWGRP) ? 'w' : '-');
-	ft_putchar((lst->mode & S_IXGRP) ? 'x' : '-');
-	ft_putchar((lst->mode & S_IROTH) ? 'r' : '-');
-	ft_putchar((lst->mode & S_IWOTH) ? 'w' : '-');
-	ft_putchar((lst->mode & S_IXOTH) ? 'x' : '-');
+	display_perms(lst);
 	ft_putchar(acl_print(lst));
 	ft_printf("%*d ", lst->max + 1, lst->nlink);
 	ft_printf("%s  %s", lst->uid, lst->gid);

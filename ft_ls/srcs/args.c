@@ -6,7 +6,7 @@
 /*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 10:15:34 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 10:28:41 by fremoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,21 @@ int				get_i(char **av, int ac, int i)
 int				sort_args(char **args, int err, int ac, int flags)
 {
 	int			i;
+	int			j;
 	char		*temp;
 
 	i = 0;
-	while ((args[i] != NULL) && (args[i + 1] != NULL))
+	while (i < ac)
 	{
-		if (ft_strcmp(args[i], args[i + 1]) <= 0)
-			i++;
-		else
-		{
-			temp = args[i];
-			args[i] = args[i + 1];
-			args[i + 1] = temp;
-		}
+		j = i;
+		while (++j < ac)
+			if (ft_strcmp(args[i], args[j]) > 0)
+			{
+				temp = args[i];
+				args[i] = args[j];
+				args[j] = temp;
+			}
+		i++;
 	}
 	return (check_arg(ac, flags, args, err));
 }
@@ -56,7 +58,7 @@ int				check_arg(int ac, int flags, char **args, int err)
 
 	i = 0;
 	check = 0;
-	if (err > 0)
+	if (err > 0 && ac > 2)
 		ft_putchar('\n');
 	while (args[i] != NULL)
 	{
