@@ -9,7 +9,7 @@ To get started, clone the FT_ls repo and go into the folder:
 git clone https://github.com/FWMoor/FT_ls
 cd FT_ls/FT_ls
 ```
-## Make:    
+### Make:    
 
 ```
 make
