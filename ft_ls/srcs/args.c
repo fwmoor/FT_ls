@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:08:19 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 16:40:10 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/23 19:18:40 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ int				check_arg(int ac, int flags, char **args, int err)
 		ft_putchar('\n');
 	while (args[i] != NULL)
 	{
-		if (((ac > 0 && err > 0) && !(flags & LONG)) || (ac > 1 && err == 0) ||
-		(flags & LONG && ac - err > 2))
+		if ((ac > 0 && err > 0) || (ac > 1 && err == 0))
 			ft_printf("%s:\n", args[i]);
 		if (args[i][0] != '-')
 			ft_ls(args[i], flags);
@@ -94,7 +93,8 @@ int				add_args(char **args, int ac, char **av, int flags)
 		else
 			err++;
 		i++;
-		closedir(dr);
+		if (dr)
+			closedir(dr);
 	}
 	args[j] = NULL;
 	return (sort_args(args, err, j, flags));

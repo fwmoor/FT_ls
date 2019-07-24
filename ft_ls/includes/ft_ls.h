@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fremoor <fremoor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/28 09:17:47 by zmahomed          #+#    #+#             */
-/*   Updated: 2019/07/23 12:28:54 by fremoor          ###   ########.fr       */
+/*   Updated: 2019/07/23 18:57:11 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void				recursion(t_dir *list, int flags, char *path);
 void				check_nano(int flags, t_dir *a, t_dir *b, t_dir **result);
 void				fb_split(t_dir *src, t_dir **front, t_dir **back);
 void				basic_print(struct dirent *de, int flags, DIR *dr);
+void				print_output_long(t_dir *list, int flags, char *path);
 void				list_add(t_dir **ls, struct dirent *de, char *path, int f);
 void				recursive_print(struct dirent *de, int flags, char *path);
 t_dir				*s_merge(t_dir *a, t_dir *b, int flags);
