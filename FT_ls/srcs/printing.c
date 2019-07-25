@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:17 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 18:56:26 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/25 20:42:48 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void				print_normal(t_dir *list, int flags)
 void				print_output(t_dir *list, int flags, char *path)
 {
 	if (flags & LONG || flags & UGNOM)
-		print_long(list, flags, path);
+			print_long(list, flags, path);
 	else
 		print_normal(list, flags);
 }

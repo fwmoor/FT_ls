@@ -6,7 +6,7 @@
 /*   By: fwmoor <fwmoor@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 11:42:03 by fremoor           #+#    #+#             */
-/*   Updated: 2019/07/23 19:10:21 by fwmoor           ###   ########.fr       */
+/*   Updated: 2019/07/25 20:45:29 by fwmoor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void				ft_ls(char *path, int flags)
 	initial = NULL;
 	de = NULL;
 	dr = opendir(path);
+	if (errno == 13)
+	{
+		ft_printf("ft_ls: test: Permission denied\n");
+		return ;
+	}
 	while ((de = readdir(dr)))
 	{
 		if (!initial)
