@@ -42,7 +42,9 @@ make
 ```-t``` - Sorts files according to time.  
 
 ## Disclaimer:  
-This project isn't perfect! Use my code at your own risk. After my evaluation, [Julian](https://github.com/WolfenGames) broke my code a few times. I've listed a few names of people that have helped me with ft_ls. Be sure to check out their profiles when you have time.
+Use my code at your own risk!  
+I've listed a few names of people that have helped me with ft_ls.  
+Be sure to check out their profiles when you have time.
 
 ## Helpers
 [Mike](https://github.com/MikeFMeyer) - Faster reading.  
